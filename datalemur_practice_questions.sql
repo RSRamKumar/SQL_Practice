@@ -14,3 +14,10 @@ SELECT manufacturer, CONCAT( '$', ROUND(SUM(total_sales) / 1000000), ' million')
 SELECT COUNT(*) FROM (SELECT policy_holder_id, count(policy_holder_id) as member_count FROM callers GROUP BY policy_holder_id having count(policy_holder_id) >=3
 ) AS total_calls;
 
+
+5. Teams Power Users
+SELECT sender_id, count(message_id) as message_count FROM messages
+WHERE EXTRACT(MONTH FROM sent_date) = '8'
+  AND EXTRACT(YEAR FROM sent_date) = '2022'
+  GROUP BY sender_id  ORDER BY message_count desc
+limit 2;
