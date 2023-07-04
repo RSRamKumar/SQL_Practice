@@ -9,3 +9,8 @@ SELECT drug, total_sales - cogs as total_profit FROM pharmacy_sales ORDER BY tot
 
 3. Pharmacy Analytics (Part 3)
 SELECT manufacturer, CONCAT( '$', ROUND(SUM(total_sales) / 1000000), ' million') as sale FROM pharmacy_sales GROUP BY manufacturer ORDER BY SUM(total_sales) desc ;
+
+4. Patient Support Analysis (Part 1)
+SELECT COUNT(*) FROM (SELECT policy_holder_id, count(policy_holder_id) as member_count FROM callers GROUP BY policy_holder_id having count(policy_holder_id) >=3
+) AS total_calls;
+
