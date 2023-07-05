@@ -21,3 +21,7 @@ WHERE EXTRACT(MONTH FROM sent_date) = '8'
   AND EXTRACT(YEAR FROM sent_date) = '2022'
   GROUP BY sender_id  ORDER BY message_count desc
 limit 2;
+
+6. Cards Issued Difference
+SELECT card_name, max(issued_amount)-min(issued_amount) as difference FROM monthly_cards_issued 
+GROUP BY card_name ORDER BY difference desc;
