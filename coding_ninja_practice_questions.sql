@@ -10,3 +10,8 @@ select namecust from customers where namecust   not in
 (select namecust from customers join orders on customers.id = orders.customerid)
 
 --select customers.NameCust as "Customers" from customers where customers.id not in ( select CustomerId from Orders )
+
+
+4. Marvel Cities
+select * from city where population > 100000
+
