@@ -27,3 +27,8 @@ SELECT LOWER(TRIM(product_name)) AS product_name, SUBSTRING(CAST(sale_date AS VA
 COUNT(sale_id) AS total FROM Sales 
 GROUP BY LOWER(TRIM(product_name)),SUBSTRING(CAST(sale_date AS VARCHAR(10)),1,7) 
 ORDER BY 1,2 ASC
+
+6. Customer Placing the Largest Number Orders
+select customer_number from orders
+group by customer_number
+having count(order_number) >1
