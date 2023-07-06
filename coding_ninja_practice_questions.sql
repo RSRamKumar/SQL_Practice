@@ -13,5 +13,4 @@ select namecust from customers where namecust   not in
 
 
 4. Marvel Cities
-select * from city where population > 100000
-
+SELECT * FROM city WHERE CountryCode='Marv' AND Population > 100000
