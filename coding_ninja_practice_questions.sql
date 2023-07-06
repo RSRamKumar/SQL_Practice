@@ -14,3 +14,11 @@ select namecust from customers where namecust   not in
 
 4. Marvel Cities
 SELECT * FROM city WHERE CountryCode='Marv' AND Population > 100000
+
+5. Fix the Issue
+select lower(TRIM(product_name)) as transformed_product_name,
+TO_CHAR(sale_date::DATE,'YYYY-MM') as transformed_sale_date,
+count(sale_id) as total
+from sales  
+GROUP BY transformed_product_name, transformed_sale_date
+ORDER BY transformed_product_name,transformed_sale_date )  
