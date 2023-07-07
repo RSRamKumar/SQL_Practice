@@ -42,3 +42,8 @@ where Bonus.bonus < 1000 or Bonus.bonus is NULL
 8. Recyclable and Low Fat Products
 select product_id from products
 where low_fats = 'Y' and recyclable = 'Y'
+
+9. Classes with more than 5 students
+select class from courses
+group by class
+having count(student) >=5
