@@ -66,3 +66,10 @@ ORDER BY num DESC  limit 1
 select * from cinema
 where id %2=1 and description  NOT LIKE '%boring%'
 order by rating desc
+
+11.
+--SELECT generate_series(1, 10) AS number;
+
+select generate_series(min(customer_id), max(customer_id)) as ids from customers except
+select customer_id from customers
+
