@@ -32,3 +32,9 @@ ORDER BY 1,2 ASC
 select customer_number from orders
 group by customer_number
 having count(order_number) >1
+
+
+7. Employee Bonus
+select employee.name, Bonus.bonus from employee 
+full join Bonus on Employee.empId = Bonus.empId
+where Bonus.bonus < 1000 or Bonus.bonus is NULL
