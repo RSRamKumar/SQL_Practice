@@ -62,3 +62,7 @@ group by num
 having count(num) =1
 ORDER BY num DESC  limit 1
 
+10. Not Boring Movies
+select * from cinema
+where id %2=1 and description  NOT LIKE '%boring%'
+order by rating desc
