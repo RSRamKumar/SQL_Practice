@@ -38,3 +38,7 @@ having count(order_number) >1
 select employee.name, Bonus.bonus from employee 
 full join Bonus on Employee.empId = Bonus.empId
 where Bonus.bonus < 1000 or Bonus.bonus is NULL
+
+8. Recyclable and Low Fat Products
+select product_id from products
+where low_fats = 'Y' and recyclable = 'Y'
