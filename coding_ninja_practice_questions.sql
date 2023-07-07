@@ -55,3 +55,10 @@ select max(num) as num from my_numbers where num in
 group by num 
 having count(num) =1
 )
+
+(or)
+select num from my_numbers
+group by num 
+having count(num) =1
+ORDER BY num DESC  limit 1
+
