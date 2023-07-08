@@ -73,3 +73,7 @@ order by rating desc
 select generate_series(min(customer_id), max(customer_id)) as ids from customers except
 select customer_id from customers
 
+12. Director's Actor
+select actor_id, director_id,  count(*)  from actordirector
+group by actor_id , director_id
+having count(*) >=3
