@@ -95,3 +95,12 @@ case when x+y > z and x+z >y and y+z > x then 'Yes' else 'No' end as triangle
 from triangle
 
 
+15. Rank Scores
+SELECT
+	score ,
+	DENSE_RANK() OVER (
+		ORDER BY score desc
+	) "Rank" 
+FROM
+	scores;
+
