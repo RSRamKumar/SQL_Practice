@@ -89,4 +89,9 @@ select session_id from playback where session_id not in
 select (session_id) from playback left  join ads on playback.customer_id = ads.customer_id
 where ads.timestamp  between playback.start_time and playback.end_time )
 
+14. Triangle Judgement
+select x,y,z ,
+case when x+y > z and x+z >y and y+z > x then 'Yes' else 'No' end as triangle
+from triangle
+
 
