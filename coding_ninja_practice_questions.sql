@@ -74,6 +74,7 @@ select generate_series(min(customer_id), max(customer_id)) as ids from customers
 select customer_id from customers
 
 12. Director's Actor
+  
 select actor_id, director_id,  count(*)  from actordirector
 group by actor_id , director_id
 having count(*) >=3
@@ -81,4 +82,11 @@ having count(*) >=3
 13. Ad-Free Sessions
 select   session_id   from playback left  join ads on playback.customer_id = ads.customer_id
 and ads.timestamp   between playback.start_time and playback.end_time  WHERE Ads.customer_id IS NULL
+
+or 
+select session_id from playback where session_id not in 
+(
+select (session_id) from playback left  join ads on playback.customer_id = ads.customer_id
+where ads.timestamp  between playback.start_time and playback.end_time )
+
 
