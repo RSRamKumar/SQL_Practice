@@ -104,3 +104,12 @@ SELECT
 FROM
 	scores;
 
+16. IMDb Genre
+select   genre.genre, max(earning.Domestic + earning.Worldwide - IMDb.Budget) as net_profit from IMDb join genre
+on IMDb.movie_id = genre.movie_id
+join earning on IMDb.movie_id = earning.movie_id
+where IMDb.title LIKE '%(2012)%'
+group by  genre.genre
+having genre.genre is NOT NULL
+order by genre.genre
+
