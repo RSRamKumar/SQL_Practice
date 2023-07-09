@@ -25,3 +25,9 @@ limit 2;
 6. Cards Issued Difference
 SELECT card_name, max(issued_amount)-min(issued_amount) as difference FROM monthly_cards_issued 
 GROUP BY card_name ORDER BY difference desc;
+
+7. Average Post Hiatus (Part 1)
+select 	user_id,  MAX(post_date::DATE)-MIN(post_date::DATE) as days_between from posts
+where EXTRACT(YEAR FROM post_date) = '2021'
+GROUP BY user_id 
+HAVING COUNT(post_id) > 1
