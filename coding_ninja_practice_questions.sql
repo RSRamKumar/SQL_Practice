@@ -114,7 +114,7 @@ having genre.genre is NOT NULL
 order by genre.genre
 
 17. Count Student Number in Departments
-select  department.dept_name, count(student.student_id) as student_number from student full join department
+select  department.dept_name, count(student.student_id) as student_number from student right join department
 on student.dept_id = department.dept_id
 group by department.dept_name
 order by student_number desc
