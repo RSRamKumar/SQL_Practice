@@ -119,9 +119,14 @@ on student.dept_id = department.dept_id
 group by department.dept_name
 order by student_number desc
 
-18. Maximum Transaction Each Day
+18*. Maximum Transaction Each Day
 select transaction_id from transactions where (DATE(day), amount) in
 (
 select DATE(day) as day , max(amount) as max_amt from transactions
 group by 1  )
 order by 1
+
+19. Warehouse Manager
+select warehouse.name as warehouse_name,  sum(products.width*products.length*products.height * warehouse.units)  as volume
+from warehouse join products on warehouse.product_id = products.product_id
+group by warehouse.name 
