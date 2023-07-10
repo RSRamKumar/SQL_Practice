@@ -135,6 +135,6 @@ group by warehouse.name
 select viewer_id  as id from views
 where author_id != viewer_id
 group by viewer_id, view_date
-having count(view_date) >=2
+having count(view_date) >1
 order by viewer_id 
 
