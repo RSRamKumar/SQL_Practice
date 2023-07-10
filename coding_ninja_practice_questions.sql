@@ -118,3 +118,10 @@ select  department.dept_name, count(student.student_id) as student_number from s
 on student.dept_id = department.dept_id
 group by department.dept_name
 order by student_number desc
+
+18. Maximum Transaction Each Day
+select transaction_id from transactions where (DATE(day), amount) in
+(
+select DATE(day) as day , max(amount) as max_amt from transactions
+group by 1  )
+order by 1
