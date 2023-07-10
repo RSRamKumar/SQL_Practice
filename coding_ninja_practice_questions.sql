@@ -130,3 +130,11 @@ order by 1
 select warehouse.name as warehouse_name,  sum(products.width*products.length*products.height * warehouse.units)  as volume
 from warehouse join products on warehouse.product_id = products.product_id
 group by warehouse.name 
+
+20. Article
+select viewer_id  as id from views
+where author_id != viewer_id
+group by viewer_id, view_date
+having count(view_date) >=2
+order by viewer_id 
+
