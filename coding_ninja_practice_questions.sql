@@ -138,3 +138,9 @@ group by viewer_id, view_date
 having count(view_date) >1
 order by viewer_id 
 
+21. Product's Worth Over Invoices
+	
+select name, sum(rest) as rest, sum(paid) as paid, sum(canceled) as canceled, sum(refunded) as refunded from product
+join invoice on product.product_id = invoice.product_id
+group by name
+order by name
