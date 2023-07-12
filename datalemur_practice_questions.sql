@@ -31,3 +31,9 @@ select 	user_id,  MAX(post_date::DATE)-MIN(post_date::DATE) as days_between from
 where EXTRACT(YEAR FROM post_date) = '2021'
 GROUP BY user_id 
 HAVING COUNT(post_id) > 1
+
+8. Average Review Ratings
+select EXTRACT(MONTH FROM submit_date) as month, product_id, ROUND(avg(stars), 2)
+from reviews
+GROUP BY EXTRACT(MONTH FROM submit_date), product_id
+ORDER BY EXTRACT(MONTH FROM submit_date), product_id
