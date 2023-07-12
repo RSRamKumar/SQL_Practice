@@ -37,3 +37,6 @@ select EXTRACT(MONTH FROM submit_date) as month, product_id, ROUND(avg(stars), 2
 from reviews
 GROUP BY EXTRACT(MONTH FROM submit_date), product_id
 ORDER BY EXTRACT(MONTH FROM submit_date), product_id
+
+10. Compressed Mean
+SELECT ROUND(sum(item_count::Decimal * order_occurrences) / sum(order_occurrences), 1) mean FROM items_per_order;
