@@ -15,3 +15,10 @@ select  name, sum(weight) over(order by name) running_total_weight
 select 
 name, breed, sum(weight) over (partition by breed order by name) running_total_weight
  from cats 
+
+
+4.Examining nearby rows
+select 
+name, weight, 
+avg(weight) over(order by weight ROWS between 1 preceding and 1 following) average_weight
+ from cats order by weight
