@@ -40,3 +40,9 @@ ORDER BY EXTRACT(MONTH FROM submit_date), product_id
 
 10. Compressed Mean
 SELECT ROUND(sum(item_count::Decimal * order_occurrences) / sum(order_occurrences), 1) mean FROM items_per_order;
+
+11. Second Day Confirmation
+ select emails.user_id    from emails
+ join texts on emails.email_id = texts.email_id
+ where texts.signup_action = 'Confirmed' and 
+ texts.action_date = emails.signup_date + INTERVAL '1 day'
