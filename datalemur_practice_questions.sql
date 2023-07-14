@@ -46,3 +46,9 @@ SELECT ROUND(sum(item_count::Decimal * order_occurrences) / sum(order_occurrence
  join texts on emails.email_id = texts.email_id
  where texts.signup_action = 'Confirmed' and 
  texts.action_date = emails.signup_date + INTERVAL '1 day'
+
+12. Compressed Mode
+SELECT item_count as mode FROM items_per_order
+where order_occurrences = (SELECT  max(order_occurrences) from items_per_order)
+ORDER BY item_count asc;
+
