@@ -153,3 +153,7 @@ LOWER(SUBSTRING(name,2))) AS name  from users
 select user_id, max(time_stamp) AS last_stamp from logins
 where EXTRACT(YEAR from time_stamp) = '2020'
 group by user_id  
+
+24. Queries Quality and Percentage
+select query_name,  round(avg(rating/position),2)  quality from queries
+group by query_name
