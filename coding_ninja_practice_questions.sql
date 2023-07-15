@@ -161,7 +161,6 @@ group by query_name
 
 25. Sellers With No Sales
 select seller.seller_name from seller where seller.seller_name not in (
-select  seller.seller_name     from orders 
-join customer using (customer_id)
+select  seller.seller_name from orders 
 join seller using(seller_id)
 where EXTRACT(year from orders.sale_date) = '2020')
