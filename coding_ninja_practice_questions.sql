@@ -157,3 +157,11 @@ group by user_id
 24. Queries Quality and Percentage
 select query_name,  round(avg(rating/position),2)  quality from queries
 group by query_name
+
+
+25. Sellers With No Sales
+select seller.seller_name from seller where seller.seller_name not in (
+select  seller.seller_name     from orders 
+join customer using (customer_id)
+join seller using(seller_id)
+where EXTRACT(year from orders.sale_date) = '2020')
