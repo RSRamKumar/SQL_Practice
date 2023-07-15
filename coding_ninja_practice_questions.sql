@@ -148,3 +148,8 @@ order by name
 22. Fix Names in a Table
 select user_id, CONCAT(UPPER(SUBSTRING (name,1,1)),
 LOWER(SUBSTRING(name,2))) AS name  from users
+
+23. The Latest Login in 2020
+select user_id, max(time_stamp) AS last_stamp from logins
+where EXTRACT(YEAR from time_stamp) = '2020'
+group by user_id  
