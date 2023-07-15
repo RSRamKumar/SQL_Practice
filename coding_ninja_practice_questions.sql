@@ -144,3 +144,7 @@ select name, sum(rest) as rest, sum(paid) as paid, sum(canceled) as canceled, su
 join invoice on product.product_id = invoice.product_id
 group by name
 order by name
+
+22. Fix Names in a Table
+select user_id, CONCAT(UPPER(SUBSTRING (name,1,1)),
+LOWER(SUBSTRING(name,2))) AS name  from users
