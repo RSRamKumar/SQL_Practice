@@ -164,3 +164,11 @@ select seller.seller_name from seller where seller.seller_name not in (
 select  seller.seller_name from orders 
 join seller using(seller_id)
 where EXTRACT(year from orders.sale_date) = '2020')
+
+
+24. Top Travellers
+select   users.name, COALESCE(sum(rides.distance),0) as travelled_distance from users left join rides
+on users.id = rides.user_id
+group by users.name
+order by travelled_distance desc, users.name 
+
