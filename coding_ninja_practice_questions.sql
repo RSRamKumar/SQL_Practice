@@ -176,4 +176,7 @@ order by travelled_distance desc, users.name
 select customers.namecust as "Customers" from Customers where  customers.namecust not in
 (select customers.namecust from customers join orders on 
  customers.id = orders.customerid)
+ (or)
+ select customers.namecust AS "Customers" from customers where
+  customers.id not in (select customerid from orders)
  
