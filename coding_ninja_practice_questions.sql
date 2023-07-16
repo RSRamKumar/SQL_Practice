@@ -179,4 +179,12 @@ select customers.namecust as "Customers" from Customers where  customers.namecus
  (or)
  select customers.namecust AS "Customers" from customers where
   customers.id not in (select customerid from orders)
- 
+
+26. IMDb Max Weighted Rating
+select   genre.genre, MAX( (IMDB.rating + IMDB.metacritic/10)/2.0) as weighted_rating from IMDB   
+join genre on imdb.movie_id = genre.movie_id
+where IMDB.title  LIKE '%(2014)%'
+group by genre 
+having genre is NOT  NULL
+order by genre 
+
