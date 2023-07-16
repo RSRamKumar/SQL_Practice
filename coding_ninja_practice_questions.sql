@@ -79,7 +79,7 @@ select actor_id, director_id,  count(*)  from actordirector
 group by actor_id , director_id
 having count(*) >=3
 
-13. Ad-Free Sessions
+13. Ad-Free Sessions / Spotify Sessions
 select   session_id   from playback left  join ads on playback.customer_id = ads.customer_id
 and ads.timestamp   between playback.start_time and playback.end_time  WHERE Ads.customer_id IS NULL
 
