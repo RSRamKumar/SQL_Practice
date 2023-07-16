@@ -188,3 +188,12 @@ group by genre
 having genre is NOT  NULL
 order by genre 
 
+27. Sales Executive
+ select salesperson.name from salesperson where salesperson.name not in
+ (
+ select   salesperson.name  from salesperson join orders
+ on salesperson.sales_id = orders.sales_id
+ join company on orders.com_id = company.com_id
+ where company.name = 'RED'
+ )
+ 
