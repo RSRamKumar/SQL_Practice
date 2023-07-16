@@ -172,3 +172,8 @@ on users.id = rides.user_id
 group by users.name
 order by travelled_distance desc, users.name 
 
+25. Customers Who Never Order
+select customers.namecust as "Customers" from Customers where  customers.namecust not in
+(select customers.namecust from customers join orders on 
+ customers.id = orders.customerid)
+ 
