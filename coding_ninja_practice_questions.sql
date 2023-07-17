@@ -211,3 +211,14 @@ with ranked_data AS (
 FROM ranked_data
 WHERE deliver_date_rank = 1;
  
+29. Department Highest Salary
+ WITH ranked_data AS (
+select employee.name AS "Employee", employee.salary AS "Salary", department.name AS "Department",
+RANK () over (Partition by department.name order by employee.salary desc) employee_salary_rank
+from employee
+join department on employee.departmentid = department.id
+) 
+
+SELECT "Department","Employee"   , "Salary"   
+FROM ranked_data
+WHERE employee_salary_rank = 1;
