@@ -238,3 +238,16 @@ join department on employee.departmentid = department.id
 select "Department", "Employee", "Salary"
 from ranked_data
 where salary_rank  in (1,2,3)
+
+31. Get the Second Most Recent Activity
+with ranked_data as
+(
+select *, rank () over (partition by username order by startdate ) activity_rank,
+count (*) over (PARTITION BY username) activity_count 
+from useractivity
+)
+
+select username, activity, startdate, enddate from ranked_data
+where activity_rank =2 or activity_count =1
+
+ 
