@@ -222,3 +222,19 @@ join department on employee.departmentid = department.id
 SELECT "Department","Employee"   , "Salary"   
 FROM ranked_data
 WHERE employee_salary_rank = 1;
+
+30. Department Top Three Salaries
+with ranked_data as
+(
+
+select employee.name AS "Employee", employee.salary AS "Salary", department.name AS "Department",
+  DENSE_RANK () over (Partition by department.name order by employee.salary desc) salary_rank
+
+ from employee
+join department on employee.departmentid = department.id
+
+)
+
+select "Department", "Employee", "Salary"
+from ranked_data
+where salary_rank  in (1,2,3)
