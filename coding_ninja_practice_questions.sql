@@ -197,3 +197,17 @@ order by genre
  where company.name = 'RED'
  )
  
+28. Immediate Food Delivery
+with ranked_data AS (
+     select * ,
+ RANK () OVER ( 
+		PARTITION BY customer_id
+		ORDER BY order_date  
+	) deliver_date_rank
+ from delivery
+ )
+ 
+ SELECT round((sum(case when order_date = customer_pref_delivery_date then 1.0  else 0 end  )/count(*))*100.0,2)  AS immediate_percentage
+FROM ranked_data
+WHERE deliver_date_rank = 1;
+ 
