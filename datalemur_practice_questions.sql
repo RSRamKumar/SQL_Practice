@@ -22,6 +22,17 @@ WHERE EXTRACT(MONTH FROM sent_date) = '8'
   GROUP BY sender_id  ORDER BY message_count desc
 limit 2;
 
+13. Odd and Even Measurements
+ with row_data as (
+SELECT ROW_NUMBER () OVER (PARTITION BY DATE(measurement_time) ORDER BY measurement_id),
+measurement_value, date(measurement_time) 
+FROM measurements 
+)
+
+SELECT date, sum(CASE WHEN row_number %2=1 then measurement_value ELSE 0 end) odd_sum,
+sum(CASE WHEN row_number %2=0 then measurement_value ELSE 0 end) even_sum
+FROM row_data
+GROUP BY date
 6. Cards Issued Difference
 SELECT card_name, max(issued_amount)-min(issued_amount) as difference FROM monthly_cards_issued 
 GROUP BY card_name ORDER BY difference desc;
