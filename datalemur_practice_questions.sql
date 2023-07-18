@@ -22,17 +22,7 @@ WHERE EXTRACT(MONTH FROM sent_date) = '8'
   GROUP BY sender_id  ORDER BY message_count desc
 limit 2;
 
-13. Odd and Even Measurements
- with row_data as (
-SELECT ROW_NUMBER () OVER (PARTITION BY DATE(measurement_time) ORDER BY measurement_id),
-measurement_value, date(measurement_time) 
-FROM measurements 
-)
 
-SELECT date, sum(CASE WHEN row_number %2=1 then measurement_value ELSE 0 end) odd_sum,
-sum(CASE WHEN row_number %2=0 then measurement_value ELSE 0 end) even_sum
-FROM row_data
-GROUP BY date
 6. Cards Issued Difference
 SELECT card_name, max(issued_amount)-min(issued_amount) as difference FROM monthly_cards_issued 
 GROUP BY card_name ORDER BY difference desc;
@@ -49,21 +39,21 @@ from reviews
 GROUP BY EXTRACT(MONTH FROM submit_date), product_id
 ORDER BY EXTRACT(MONTH FROM submit_date), product_id
 
-10. Compressed Mean
+9. Compressed Mean
 SELECT ROUND(sum(item_count::Decimal * order_occurrences) / sum(order_occurrences), 1) mean FROM items_per_order;
 
-11. Second Day Confirmation
+10. Second Day Confirmation
  select emails.user_id    from emails
  join texts on emails.email_id = texts.email_id
  where texts.signup_action = 'Confirmed' and 
  texts.action_date = emails.signup_date + INTERVAL '1 day'
 
-12. Compressed Mode
+11. Compressed Mode
 SELECT item_count as mode FROM items_per_order
 where order_occurrences = (SELECT  max(order_occurrences) from items_per_order)
 ORDER BY item_count asc;
 
-13. Odd and Even Measurements
+12. Odd and Even Measurements
 with row_data as (
 SELECT ROW_NUMBER () OVER (PARTITION BY DATE(measurement_time) ORDER BY measurement_id),
 measurement_value, date(measurement_time) 
@@ -75,8 +65,8 @@ sum(CASE WHEN row_number %2=0 then measurement_value ELSE 0 end) even_sum
 FROM row_data
 GROUP BY date
 
-14. Users Third Transaction
-with row_data as (
+13. Users Third Transaction
+ with row_data as (
 select *, ROW_NUMBER() over (PARTITION BY user_id ORDER BY transaction_date) row
 FROM transactions
 )
@@ -84,7 +74,7 @@ FROM transactions
 select user_id, spend, transaction_date FROM row_data
 WHERE row =3
 
-15. Highest-Grossing Items
+14. Highest-Grossing Items
 with ranked_data AS (
 SELECT  category, product, sum(spend) as "total_spend" ,
 RANK() over (PARTITION BY category ORDER BY sum(spend) desc)
@@ -95,7 +85,7 @@ GROUP BY category, product
 
 select category, product, total_spend from ranked_data where rank in (1,2)
 
- 16. Supercloud Customer 
+ 15. Supercloud Customer 
 select customer_contracts.customer_id  
 from customer_contracts left join products using(product_id)
 GROUP BY customer_contracts.customer_id 
