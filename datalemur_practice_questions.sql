@@ -104,7 +104,7 @@ GROUP BY customer_contracts.customer_id
 SELECT customer_id FROM cte
 where unique_product_category_count = (SELECT count(DISTINCT product_category) FROM products)
 
-16. Card Launch Success
+16*. Card Launch Success
 with ranked_data as 
 (
 select card_name, issued_amount ,
