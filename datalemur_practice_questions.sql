@@ -63,3 +63,15 @@ SELECT item_count as mode FROM items_per_order
 where order_occurrences = (SELECT  max(order_occurrences) from items_per_order)
 ORDER BY item_count asc;
 
+13. Odd and Even Measurements
+with row_data as (
+SELECT ROW_NUMBER () OVER (PARTITION BY DATE(measurement_time) ORDER BY measurement_id),
+measurement_value, date(measurement_time) 
+FROM measurements 
+)
+
+SELECT date, sum(CASE WHEN row_number %2=1 then measurement_value ELSE 0 end) odd_sum,
+sum(CASE WHEN row_number %2=0 then measurement_value ELSE 0 end) even_sum
+FROM row_data
+GROUP BY date
+
