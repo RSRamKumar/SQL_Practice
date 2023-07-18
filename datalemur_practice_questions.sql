@@ -83,3 +83,14 @@ FROM transactions
 
 select user_id, spend, transaction_date FROM row_data
 WHERE row =3
+
+15. Highest-Grossing Items
+with ranked_data AS (
+SELECT  category, product, sum(spend) as "total_spend" ,
+RANK() over (PARTITION BY category ORDER BY sum(spend) desc)
+FROM product_spend
+where EXTRACT(year FROM transaction_date :: date) = '2022'
+GROUP BY category, product
+)
+
+select category, product, total_spend from ranked_data where rank in (1,2)
