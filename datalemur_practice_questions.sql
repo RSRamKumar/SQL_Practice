@@ -75,7 +75,7 @@ sum(CASE WHEN row_number %2=0 then measurement_value ELSE 0 end) even_sum
 FROM row_data
 GROUP BY date
 
-14. User's Third Transaction
+14. Users Third Transaction
 with row_data as (
 select *, ROW_NUMBER() over (PARTITION BY user_id ORDER BY transaction_date) row
 FROM transactions
@@ -94,3 +94,10 @@ GROUP BY category, product
 )
 
 select category, product, total_spend from ranked_data where rank in (1,2)
+
+ 16. Supercloud Customer 
+select customer_contracts.customer_id  
+from customer_contracts left join products using(product_id)
+GROUP BY customer_contracts.customer_id 
+HAVING count(DISTINCT products.product_category) = 
+(SELECT count(DISTINCT product_category) FROM products)
