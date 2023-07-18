@@ -91,3 +91,15 @@ from customer_contracts left join products using(product_id)
 GROUP BY customer_contracts.customer_id 
 HAVING count(DISTINCT products.product_category) = 
 (SELECT count(DISTINCT product_category) FROM products)
+
+(or)
+
+with cte as 
+(
+select customer_contracts.customer_id  , count(DISTINCT product_category) unique_product_category_count
+from customer_contracts left join products using(product_id)
+GROUP BY customer_contracts.customer_id 
+)
+
+SELECT customer_id FROM cte
+where unique_product_category_count = (SELECT count(DISTINCT product_category) FROM products)
