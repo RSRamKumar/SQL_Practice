@@ -76,10 +76,10 @@ FROM row_data
 GROUP BY date
 
 14. User's Third Transaction
-with ranked_data as (
-select *, RANK() over (PARTITION BY user_id ORDER BY transaction_date)
+with row_data as (
+select *, ROW_NUMBER() over (PARTITION BY user_id ORDER BY transaction_date) row
 FROM transactions
 )
 
-select user_id, spend, transaction_date FROM ranked_data
-WHERE rank =3
+select user_id, spend, transaction_date FROM row_data
+WHERE row =3
