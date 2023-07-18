@@ -75,3 +75,11 @@ sum(CASE WHEN row_number %2=0 then measurement_value ELSE 0 end) even_sum
 FROM row_data
 GROUP BY date
 
+14. User's Third Transaction
+with ranked_data as (
+select *, RANK() over (PARTITION BY user_id ORDER BY transaction_date)
+FROM transactions
+)
+
+select user_id, spend, transaction_date FROM ranked_data
+WHERE rank =3
