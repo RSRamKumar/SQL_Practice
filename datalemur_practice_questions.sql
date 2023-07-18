@@ -103,3 +103,14 @@ GROUP BY customer_contracts.customer_id
 
 SELECT customer_id FROM cte
 where unique_product_category_count = (SELECT count(DISTINCT product_category) FROM products)
+
+16. Card Launch Success
+with ranked_data as 
+(
+select card_name, issued_amount ,
+RANK() over (PARTITION BY card_name ORDER BY issue_year, issue_month) rank  FROM monthly_cards_issued 
+ 
+)
+
+SELECT card_name, issued_amount FROM ranked_data where rank =1
+ORDER BY issued_amount desc
