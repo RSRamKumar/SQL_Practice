@@ -125,4 +125,12 @@ HAVING COUNT(*) >=2
 )
 
 SELECT COUNT(*) FROM cte
+
+18. App Click-through Rate (CTR)
+ SELECT app_id, ROUND((sum(case WHEN event_type = 'click' then 1.0 else 0 END) /
+ sum (case WHEN event_type = 'impression' then 1.0 else 0 end))* 100.0,2) AS ctr
+ from events 
+ where EXTRACT(year FROM timestamp) = '2022'
+ GROUP BY app_id
+ 
  
