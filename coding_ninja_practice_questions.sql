@@ -260,3 +260,9 @@ where activity_rank =2 or activity_count =1
  
  select student_id, course_id, grade from student_grade_rank
  where grade_rank=1
+
+33. Customers Who Bought All Products
+select customer_id 
+from customer
+group by customer_id
+having count(distinct product_key) = (select count(product_key) from product)
