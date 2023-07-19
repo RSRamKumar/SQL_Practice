@@ -266,3 +266,14 @@ select customer_id
 from customer
 group by customer_id
 having count(distinct product_key) = (select count(product_key) from product)
+
+(or)
+with customer_purchase_data as 
+(
+select customer_id , count(distinct product_key) product_count
+from customer
+group by customer_id
+)
+
+select customer_id from customer_purchase_data
+where product_count = (select count(product_key) from product)
