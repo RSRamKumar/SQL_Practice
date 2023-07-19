@@ -114,3 +114,15 @@ RANK() over (PARTITION BY card_name ORDER BY issue_year, issue_month) rank  FROM
 
 SELECT card_name, issued_amount FROM ranked_data where rank =1
 ORDER BY issued_amount desc
+
+17. Duplicate Job Listings
+with cte as 
+(
+SELECT company_id , COUNT(*) AS "duplicate_job_counts"
+FROM job_listings
+GROUP BY company_id, title, description
+HAVING COUNT(*) >=2
+)
+
+SELECT COUNT(*) FROM cte
+ 
