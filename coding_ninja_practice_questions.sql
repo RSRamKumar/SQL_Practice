@@ -251,3 +251,12 @@ select username, activity, startdate, enddate from ranked_data
 where activity_rank =2 or activity_count =1
 
  
+32. Highest Grade For Each Student
+ with student_grade_rank as 
+ (
+      select *, rank() over (partition by student_id order by grade desc, course_id) grade_rank
+ from enrollments
+ )
+ 
+ select student_id, course_id, grade from student_grade_rank
+ where grade_rank=1
