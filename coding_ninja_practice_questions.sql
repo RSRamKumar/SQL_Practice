@@ -277,3 +277,14 @@ group by customer_id
 
 select customer_id from customer_purchase_data
 where product_count = (select count(product_key) from product)
+
+34. Activity Participants
+with activity_data as 
+(
+select activity, count(*) as activity_count from friends
+group by activity
+)
+
+select activity from activity_data
+ where activity_count != (select min(activity_count) from activity_data) AND
+activity_count != (select max(activity_count) from activity_data)
