@@ -32,3 +32,15 @@ select customer_number
 from orders
 group by customer_number
 order by count(*) desc limit 1
+
+5. Sales Person
+with cte as 
+(
+select orders.order_id, company.name as "company", salesPerson.name as "sales" from orders
+join company using(com_id)
+join salesPerson  using(sales_id)
+where company.name = 'RED'
+)
+select salesperson.name from salesperson where salesperson.name not in (select sales from cte)
+
+ 
