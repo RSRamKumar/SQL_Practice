@@ -14,3 +14,10 @@ FROM film
 order by length
 LIMIT 5;
 
+4. Monthly revenue
+SELECT  EXTRACT(YEAR  FROM payment_ts) as year,
+EXTRACT(MONTH FROM payment_ts) as month, sum(amount) as revenue
+FROM payment
+group by year, month
+order by year, month
+ 
