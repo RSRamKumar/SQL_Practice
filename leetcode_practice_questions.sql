@@ -43,4 +43,8 @@ where company.name = 'RED'
 )
 select salesperson.name from salesperson where salesperson.name not in (select sales from cte)
 
+6. Actors and Directors Who Cooperated At Least Three Times
+select actor_id, director_id from actordirector
+group by actor_id, director_id
+having count(*) >= 3
  
