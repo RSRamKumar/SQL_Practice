@@ -42,3 +42,9 @@ where EXTRACT(Month from rental.rental_ts) = 5 and EXTRACT(YEAR from rental.rent
 group by customer.first_name, customer.last_name 
 order by count(*) desc limit 1
 
+8. Films with more than 10 actors
+select film.title  from film 
+join film_actor using(film_id)
+group by film.title
+having count(film_actor.actor_id) >= 10
+
