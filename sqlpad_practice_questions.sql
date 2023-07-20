@@ -1,5 +1,4 @@
 1. Top store for movie sales
-
 select store, manager from sales_by_store
 where  total_sales = (select max(total_sales) from sales_by_store)
 
@@ -8,3 +7,10 @@ SELECT category
 FROM sales_by_film_category
 order by total_sales desc
 LIMIT 3;
+
+3. Top 5 shortest movies
+SELECT  title
+FROM film
+order by length
+LIMIT 5;
+
