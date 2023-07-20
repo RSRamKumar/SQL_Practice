@@ -22,3 +22,8 @@ select distinct * from cte
 select distinct  facebook_posts.*
 from facebook_posts   join facebook_reactions  
 on facebook_posts.post_id = facebook_reactions.post_id and facebook_reactions.reaction = 'heart'
+
+3. Find the top 10 ranked songs in 2010
+select distinct year_rank, group_name, song_name from billboard_top_100_year_end
+where year = '2010'
+order by year_rank asc limit 10;
