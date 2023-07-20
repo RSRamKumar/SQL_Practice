@@ -20,4 +20,11 @@ EXTRACT(MONTH FROM payment_ts) as month, sum(amount) as revenue
 FROM payment
 group by year, month
 order by year, month
+
+5.
+SELECT EXTRACT(YEAR  FROM rental_ts) as year,
+EXTRACT(MONTH FROM rental_ts) as month,
+count(distinct customer_id) as uu_cnt
+FROM rental
+group by year, month
  
