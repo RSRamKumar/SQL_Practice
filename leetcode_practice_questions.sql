@@ -26,3 +26,9 @@ union  all
  group by movies.title
  order by avg(movierating.rating) desc, movies.title limit 1
 )
+
+4. Customer Placing the Largest Number of Orders
+select customer_number
+from orders
+group by customer_number
+order by count(*) desc limit 1
