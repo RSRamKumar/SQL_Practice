@@ -35,3 +35,10 @@ FROM payment
 group by year, month
 order by year, month
 
+7. Customer who rented the most
+select customer.first_name, customer.last_name 
+from customer join rental using(customer_id)
+where EXTRACT(Month from rental.rental_ts) = 5 and EXTRACT(YEAR from rental.rental_ts) = 2020
+group by customer.first_name, customer.last_name 
+order by count(*) desc limit 1
+
