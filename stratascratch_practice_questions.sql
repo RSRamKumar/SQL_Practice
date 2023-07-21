@@ -77,3 +77,13 @@ ON
 )
 select worker_title from salary_rank_data where salary_rank = 1
     
+6. Flags per Video
+SELECT 
+    video_id, count(DISTINCT CONCAT(COALESCE(user_firstname, ''), COALESCE(user_lastname, '')))
+FROM    
+    user_flags
+WHERE   
+    flag_id is NOT NULL
+GROUP BY
+    video_id
+    
