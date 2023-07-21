@@ -29,6 +29,14 @@ where year = '2010'
 order by year_rank asc limit 10;
 
 4. Number of violations
-select  EXTRACT(YEAR from inspection_date) AS year, count(inspection_id) from sf_restaurant_health_violations
-where business_name = 'Roxanne Cafe' 
-group by  year 
+SELECT
+    EXTRACT(YEAR from inspection_date) AS year, 
+    count(inspection_id) AS n_inspections
+FROM 
+    sf_restaurant_health_violations
+WHERE
+    business_name = 'Roxanne Cafe' AND violation_id is not null
+GROUP BY
+    year  
+
+
