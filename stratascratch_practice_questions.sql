@@ -97,3 +97,18 @@ FROM
     employee
 )
 select department, first_name, salary from salary_rank_data where salary_rank =1
+
+8. Highest Cost Orders
+SELECT      
+    customers.first_name, orders.order_date, sum(orders.total_order_cost) AS total_order_cost
+FROM
+    customers
+JOIN    
+    orders
+ON
+    customers.id = orders.cust_id and orders.order_date between '2019-02-01' AND '2019-05-01'
+GROUP BY
+    customers.first_name, orders.order_date
+ORDER BY
+    total_order_cost desc LIMIT 1
+    
