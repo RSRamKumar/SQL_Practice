@@ -87,3 +87,13 @@ WHERE
 GROUP BY
     video_id
     
+7. Highest Salary In Department
+with salary_rank_data as 
+(
+SELECT  
+    department, first_name, salary,
+    RANK() over (partition by department order by salary desc) salary_rank
+FROM    
+    employee
+)
+select department, first_name, salary from salary_rank_data where salary_rank =1
