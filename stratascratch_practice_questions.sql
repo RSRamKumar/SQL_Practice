@@ -27,3 +27,8 @@ on facebook_posts.post_id = facebook_reactions.post_id and facebook_reactions.re
 select distinct year_rank, group_name, song_name from billboard_top_100_year_end
 where year = '2010'
 order by year_rank asc limit 10;
+
+4. Number of violations
+select  EXTRACT(YEAR from inspection_date) AS year, count(inspection_id) from sf_restaurant_health_violations
+where business_name = 'Roxanne Cafe' 
+group by  year 
