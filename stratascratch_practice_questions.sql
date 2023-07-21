@@ -61,3 +61,19 @@ WHERE
 ORDER BY
     best_paid_title
 
+  (or)
+with salary_rank_data as 
+(
+SELECT
+    worker.salary,
+    title.worker_title,
+    dense_rank() over (  order by worker.salary desc) AS salary_rank
+FROM
+    worker
+JOIN  
+    title
+ON
+    worker.worker_id = title.worker_ref_id
+)
+select worker_title from salary_rank_data where salary_rank = 1
+    
