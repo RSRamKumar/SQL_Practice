@@ -39,4 +39,25 @@ WHERE
 GROUP BY
     year  
 
+5. Workers With The Highest Salaries
+with salary_data as 
+(
+SELECT
+      title.worker_title, max(worker.salary) AS salary
+FROM
+    worker
+JOIN
+    title on worker.worker_id = title.worker_ref_id
+GROUP BY
+    title.worker_title
+)
+
+SELECT
+    worker_title AS best_paid_title
+FROM 
+    salary_data
+WHERE
+    salary = (select max(salary) from salary_data)
+ORDER BY
+    best_paid_title
 
