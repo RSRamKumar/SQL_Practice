@@ -288,3 +288,8 @@ group by activity
 select activity from activity_data
  where activity_count != (select min(activity_count) from activity_data) AND
 activity_count != (select max(activity_count) from activity_data)
+
+35. Duplicate Emails
+select email from person 
+group by email
+having count(email) > 1
