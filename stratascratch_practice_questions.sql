@@ -111,4 +111,17 @@ GROUP BY
     customers.first_name, orders.order_date
 ORDER BY
     total_order_cost desc LIMIT 1
-    
+
+9. Highest Target Under Manager
+with target_rank_data as 
+(
+SELECT
+    first_name, target,
+    DENSE_RANK() over (order by target desc) AS target_rank
+FROM
+    salesforce_employees
+WHERE
+    manager_id = 13
+)
+SELECT first_name, target FROM target_rank_data WHERE target_rank = 1
+ 
