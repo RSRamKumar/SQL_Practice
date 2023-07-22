@@ -124,4 +124,19 @@ WHERE
     manager_id = 13
 )
 SELECT first_name, target FROM target_rank_data WHERE target_rank = 1
- 
+
+(or)
+SELECT
+    first_name, target 
+FROM
+    salesforce_employees
+WHERE
+    target = 
+(SELECT
+      max(target)
+FROM
+    salesforce_employees
+WHERE
+    manager_id = 13
+)
+AND  manager_id = 13
