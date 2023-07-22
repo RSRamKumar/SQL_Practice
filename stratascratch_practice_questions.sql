@@ -151,3 +151,11 @@ FROM
     yelp_reviews 
 )
 select business_name, review_text from cool_rank_data where cool_rank = 1
+
+  (or)
+SELECT business_name,
+       review_text
+FROM yelp_reviews
+WHERE cool =
+    (SELECT max(cool)
+     FROM yelp_reviews)
