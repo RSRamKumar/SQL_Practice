@@ -140,3 +140,14 @@ WHERE
     manager_id = 13
 )
 AND  manager_id = 13
+
+10. Top Cool Votes
+with cool_rank_data as 
+(
+SELECT
+    business_name, review_text, 
+    DENSE_RANK() over(order by cool desc) cool_rank
+FROM   
+    yelp_reviews 
+)
+select business_name, review_text from cool_rank_data where cool_rank = 1
