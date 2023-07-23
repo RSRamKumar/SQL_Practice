@@ -47,4 +47,15 @@ select salesperson.name from salesperson where salesperson.name not in (select s
 select actor_id, director_id from actordirector
 group by actor_id, director_id
 having count(*) >= 3
- 
+
+7. Game Play Analysis I
+with login_rank_data as 
+(
+SELECT
+    player_id, event_date AS first_login,
+    RANK() over (partition by player_id order by event_date) login_rank
+FROM    
+    activity
+)
+
+select player_id, first_login from login_rank_data where login_rank=1
