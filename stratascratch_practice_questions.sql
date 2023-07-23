@@ -159,3 +159,12 @@ FROM yelp_reviews
 WHERE cool =
     (SELECT max(cool)
      FROM yelp_reviews)
+
+11. Activity Rank
+SELECT
+    from_user, count(*) AS total_emails,
+    ROW_NUMBER() over (order by  count(*) desc, from_user) AS row_number
+FROM
+    google_gmail_emails
+GROUP BY
+    from_user
