@@ -168,3 +168,16 @@ FROM
     google_gmail_emails
 GROUP BY
     from_user
+
+12. Most Lucrative Products
+SELECT
+    product_id, sum(cost_in_dollars * units_sold) AS revenue
+FROM
+    online_orders
+WHERE
+     date_part('month',date) between 1 and 6
+GROUP BY
+    product_id
+ORDER BY
+    revenue desc LIMIT 5
+    
