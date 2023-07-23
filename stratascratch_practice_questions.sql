@@ -180,4 +180,13 @@ GROUP BY
     product_id
 ORDER BY
     revenue desc LIMIT 5
-    
+
+13. Find how many times each artist appeared on the Spotify ranking list
+SELECT
+    artist, count(*) AS n_occurences
+FROM
+    spotify_worldwide_daily_song_ranking
+GROUP BY
+    artist
+ORDER BY
+    n_occurences desc
