@@ -228,3 +228,13 @@ GROUP BY
 ORDER BY
     id
 
+18. Bikes Last Used
+SELECT
+    bike_number, max(end_time) AS last_used
+FROM
+    dc_bikeshare_q1_2012
+GROUP BY
+    bike_number 
+ORDER BY
+    last_used desc
+
