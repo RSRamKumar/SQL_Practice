@@ -190,3 +190,13 @@ GROUP BY
     artist
 ORDER BY
     n_occurences desc
+
+14. Unique Users Per Client Per Month
+SELECT
+    client_id, EXTRACT(month from time_id) AS month,
+    count(DISTINCT user_id) AS users_num
+FROM
+    fact_events
+GROUP BY
+    client_id, month
+    
