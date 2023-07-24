@@ -199,4 +199,14 @@ FROM
     fact_events
 GROUP BY
     client_id, month
+
+15. Reviews of Hotel Arena
+SELECT
+    hotel_name, reviewer_score, count(*)
+FROM
+    hotel_reviews 
+WHERE
+    hotel_name = 'Hotel Arena'
+GROUP BY
+    hotel_name, reviewer_score
     
