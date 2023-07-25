@@ -267,3 +267,11 @@ WHERE sector = 'Financials'
      FROM forbes_global_2010_2014
      WHERE sector = 'Financials')
 
+21. Average Salaries
+SELECT
+    department, first_name, salary, AVG(salary) over (PARTITION BY department)  
+FROM
+    employee
+ 
+    
+
