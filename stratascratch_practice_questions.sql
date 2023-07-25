@@ -238,3 +238,11 @@ GROUP BY
 ORDER BY
     last_used desc
 
+19. Number of Shipments Per Month
+SELECT
+    TO_CHAR(shipment_date, 'YYYY-MM') AS year_month, count((shipment_id + sub_id))
+FROM
+    amazon_shipment 
+GROUP BY
+   year_month 
+
