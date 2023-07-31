@@ -303,5 +303,17 @@ ON
     customers.id = orders.cust_id AND (customers.first_name IN ('Jill', 'Eva') )
 ORDER BY
     customers.id 
+
+25. Number of Workers by Department Starting in April or Later
+SELECT 
+    department, count(worker_id) AS num_workers
+FROM
+    worker
+WHERE
+    EXTRACT(month from joining_date) >= 4
+GROUP BY
+    department
+ORDER BY
+    num_workers desc
     
 
