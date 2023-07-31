@@ -291,5 +291,17 @@ LEFT JOIN
 ON
     customers.id = orders.cust_id
 ORDER BY customers.first_name, orders.order_details
+
+24. Order Details
+SELECT
+    customers.first_name, orders.order_date, orders.order_details, orders.total_order_cost
+FROM
+    customers
+JOIN
+    orders
+ON
+    customers.id = orders.cust_id AND (customers.first_name IN ('Jill', 'Eva') )
+ORDER BY
+    customers.id 
     
 
