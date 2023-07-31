@@ -323,5 +323,13 @@ FROM
     los_angeles_restaurant_health_inspections
 WHERE
     facility_name = 'STREET CHURROS' AND score < 95
+
+27. Lyft Driver Wages
+SELECT 
+    * 
+FROM
+    lyft_drivers 
+WHERE
+    yearly_salary <= 30000 or yearly_salary >= 70000
     
 
