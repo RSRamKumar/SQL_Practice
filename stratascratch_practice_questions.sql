@@ -272,6 +272,13 @@ SELECT
     department, first_name, salary, AVG(salary) over (PARTITION BY department)  
 FROM
     employee
- 
+
+22. Admin Department Employees Beginning in April or Later
+SELECT
+    count(*)
+FROM
+    worker
+WHERE
+    department = 'Admin' AND EXTRACT(month from joining_date) >= 4
     
 
