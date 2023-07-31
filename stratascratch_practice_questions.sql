@@ -331,5 +331,17 @@ FROM
     lyft_drivers 
 WHERE
     yearly_salary <= 30000 or yearly_salary >= 70000
+
+28. Employee and Manager Salaries
+SELECT 
+    e1.first_name, e1.salary 
+FROM
+    employee e1
+JOIN
+    employee e2
+ON
+    e1.manager_id = e2.id
+WHERE
+    e1.salary > e2.salary
     
 
