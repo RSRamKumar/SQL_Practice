@@ -343,5 +343,13 @@ ON
     e1.manager_id = e2.id
 WHERE
     e1.salary > e2.salary
+
+29. Find the base pay for Police Captains
+SELECT
+    employeename, basepay 
+FROM 
+    sf_public_salaries 
+WHERE 
+    jobtitle LIKE '%CAPTAIN%POLICE%'
     
 
