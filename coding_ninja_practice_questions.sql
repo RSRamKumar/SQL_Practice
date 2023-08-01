@@ -293,3 +293,6 @@ activity_count != (select max(activity_count) from activity_data)
 select email from person 
 group by email
 having count(email) > 1
+
+36. Employees Earning More Than Their Manager
+SELECT a.NAME AS Employee FROM Employee AS a JOIN Employee AS b ON a.ManagerId = b.Id AND a.Salary > b.Salary
