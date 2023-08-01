@@ -352,4 +352,12 @@ FROM
 WHERE 
     jobtitle LIKE '%CAPTAIN%POLICE%'
     
-
+30. New Products
+SELECT
+    company_name,
+    sum(CASE WHEN year = 2020 then 1.0 else 0 end )-
+    sum(CASE WHEN year = 2019 then 1.0 else 0 end ) AS net_products
+FROM 
+    car_launches
+GROUP BY
+    company_name
