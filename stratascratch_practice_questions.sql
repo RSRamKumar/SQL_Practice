@@ -361,3 +361,12 @@ FROM
     car_launches
 GROUP BY
     company_name
+
+31. Find students with a median writing score
+SELECT
+    student_id
+FROM
+    sat_scores
+WHERE
+    sat_writing = (SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY sat_writing) AS median
+FROM sat_scores)
