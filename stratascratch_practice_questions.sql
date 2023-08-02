@@ -391,3 +391,13 @@ SELECT
 FROM
     facebook_complaints 
 GROUP BY
+  type
+
+(Or) 
+SELECT DISTINCT type, AVG(processed::int) OVER (PARTITION BY type) AS avg_rate
+FROM facebook_complaints
+
+(Or) 
+SELECT type, AVG(processed::int)
+FROM facebook_complaints
+GROUP BY type
