@@ -370,3 +370,15 @@ FROM
 WHERE
     sat_writing = (SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY sat_writing) AS median
 FROM sat_scores)
+
+32. Customer Revenue In March
+SELECT
+    cust_id, sum(total_order_cost) AS revenue
+FROM
+    orders
+WHERE
+    EXTRACT(YEAR from order_date) = '2019' AND EXTRACT(MONTH from order_date) = '3'
+GROUP BY
+    cust_id
+ORDER BY
+    revenue DESC
