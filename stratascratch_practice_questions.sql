@@ -382,3 +382,12 @@ GROUP BY
     cust_id
 ORDER BY
     revenue DESC
+
+33. Find the rate of processed tickets for each type
+SELECT
+    type,
+    sum(CASE WHEN processed = 'TRUE' then 1.0 else 0.0 end) /
+    count(processed) AS processed_rate
+FROM
+    facebook_complaints 
+GROUP BY
