@@ -59,3 +59,9 @@ FROM
 )
 
 select player_id, first_login from login_rank_data where login_rank=1
+
+8. Employees Earning More Than Their Managers
+select e1.name AS Employee
+from employee e1 
+join employee e2
+on e1.managerId  = e2.id and e1.salary > e2.salary
