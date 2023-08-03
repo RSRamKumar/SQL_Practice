@@ -65,3 +65,6 @@ select e1.name AS Employee
 from employee e1 
 join employee e2
 on e1.managerId  = e2.id and e1.salary > e2.salary
+
+9. Customers Who Never Order
+select name AS Customers from customers where id not in (select customerid from orders)
