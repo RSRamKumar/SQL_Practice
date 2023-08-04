@@ -68,3 +68,19 @@ on e1.managerId  = e2.id and e1.salary > e2.salary
 
 9. Customers Who Never Order
 select name AS Customers from customers where id not in (select customerid from orders)
+
+10. Department Highest Salary
+with salary_rank_data as 
+(
+SELECT
+    Department.name AS "Department", Employee.name AS "Employee" , Employee.Salary,
+    dense_rank() over (partition by Department.name order by Employee.Salary desc) AS salary_rank
+FROM
+    Department
+JOIN
+    Employee
+ON
+    Employee.departmentID = Department.id
+)
+
+SELECT Department, Employee, Salary FROM salary_rank_data where salary_rank = 1
