@@ -84,3 +84,18 @@ ON
 )
 
 SELECT Department, Employee, Salary FROM salary_rank_data where salary_rank = 1
+
+10. Immediate Food Delivery II
+with delivery_rank_data as 
+(
+SELECT
+    *, rank() over (partition by customer_id order by order_date) AS delivery_rank
+FROM
+    delivery
+)
+
+SELECT
+round(sum(CASE WHEN order_date = customer_pref_delivery_date  then 1.0 else 0 end )/
+ ( count(*) ) * 100,2)  
+ AS immediate_percentage 
+from delivery_rank_data where delivery_rank = 1 
