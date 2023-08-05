@@ -120,3 +120,12 @@ sum(amount) AS trans_total_amount ,
 sum(case WHEN state = 'approved' then amount else 0 end) AS approved_total_amount 
 FROM Transactions 
 group by month, country
+
+(or)
+SELECT DATE_FORMAT(trans_date, '%Y-%m') AS month,
+country , count(*) AS trans_count ,
+sum(state="approved") as approved_count,
+sum(amount) AS trans_total_amount ,
+sum(if(state = 'approved', amount, 0)) AS approved_total_amount 
+FROM Transactions 
+group by month, country
