@@ -111,3 +111,12 @@ where (customer_id, order_date) in (
   from Delivery
   group by customer_id
 )
+
+11. Monthly Transactions I
+SELECT DATE_FORMAT(trans_date, '%Y-%m') AS month,
+country , count(*) AS trans_count ,
+sum(case WHEN state= 'approved' then 1.0 else 0 end) AS approved_count,
+sum(amount) AS trans_total_amount ,
+sum(case WHEN state = 'approved' then amount else 0 end) AS approved_total_amount 
+FROM Transactions 
+group by month, country
