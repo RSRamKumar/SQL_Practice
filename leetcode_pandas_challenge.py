@@ -30,3 +30,17 @@ import pandas as pd
 def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
    patients['DIAB1_conditions'] = patients['conditions'].apply(lambda x :  any(i for i  in x.split() if i.startswith('DIAB1')) )
    return patients[patients['DIAB1_conditions']==True] [['patient_id', 'patient_name', 'conditions']]
+
+(or)
+import pandas as pd
+
+def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
+    return patients[patients.conditions.str.contains(r'^DIAB1| DIAB1')]
+"""
+.str transforms each entry in the conditions column to a string.
+.contains() looks for the specified pattern in each of those strings.
+We can use r' ' to specify pass in a regular expression.
+'|' is the syntax for 'or' so it will match either:
+'^DIAB1': ^ is an anchor which specifies that it must be matched to the beginning of a string (eg. DIAB100 MYOP)
+' DIAB1': the space will ensure that conditions such as 'ACNE DIAB100' will be matched while conditions such as 'TYPE1DIAB100' will be exclude
+"""
