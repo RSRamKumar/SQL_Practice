@@ -23,3 +23,10 @@ import pandas as pd
 
 def invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:
       return tweets[tweets['content'].str.len().gt(15)][['tweet_id']]  
+
+5.  Patients With a Condition
+import pandas as pd
+
+def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
+   patients['DIAB1_conditions'] = patients['conditions'].apply(lambda x :  any(i for i  in x.split() if i.startswith('DIAB1')) )
+   return patients[patients['DIAB1_conditions']==True] [['patient_id', 'patient_name', 'conditions']]
