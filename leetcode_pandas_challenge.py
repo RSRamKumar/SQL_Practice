@@ -44,3 +44,8 @@ We can use r' ' to specify pass in a regular expression.
 '^DIAB1': ^ is an anchor which specifies that it must be matched to the beginning of a string (eg. DIAB100 MYOP)
 ' DIAB1': the space will ensure that conditions such as 'ACNE DIAB100' will be matched while conditions such as 'TYPE1DIAB100' will be exclude
 """
+(or)
+import pandas as pd
+
+def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
+    return patients[patients['conditions'].str.contains(' DIAB1') | patients['conditions'].str.startswith('DIAB1')]
