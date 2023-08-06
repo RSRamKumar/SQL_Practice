@@ -17,3 +17,9 @@ import pandas as pd
 def article_views(views: pd.DataFrame) -> pd.DataFrame:
     df = views[views['author_id'] == views['viewer_id']][['author_id']].drop_duplicates().sort_values(by='author_id').rename(columns={'author_id': 'id'})
     return df
+
+4. Invalid Tweets
+import pandas as pd
+
+def invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:
+      return tweets[tweets['content'].str.len().gt(15)][['tweet_id']]  
