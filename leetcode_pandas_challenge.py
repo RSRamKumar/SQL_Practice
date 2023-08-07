@@ -191,3 +191,16 @@ import pandas as pd
 def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
     return teacher.groupby(by = 'teacher_id',  as_index=False)['subject_id'].apply(lambda x:x.nunique()).rename(columns={'subject_id': 'cnt'})
 
+13. Classes More Than 5 Students
+import pandas as pd
+
+def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
+    df = courses.groupby(by = ['class'], as_index=False).agg(
+        subject_count = pd.NamedAgg(column="class", aggfunc="count")
+        )  
+    return pd.DataFrame (
+     df [df['subject_count'] >= 5]['class'],
+       columns = ['class']
+   )
+   
+
