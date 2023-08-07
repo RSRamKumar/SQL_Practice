@@ -155,3 +155,10 @@ def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
          'event_date': 'first_login' 
     })
 
+(or)
+import pandas as pd
+
+def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    return  activity.groupby(['player_id' ]).apply(lambda x: x[x['event_date'] == x['event_date'].min()]
+    ).reset_index(drop=True) [['player_id', 'event_date']].rename(columns={'event_date': 'first_login'})
+  
