@@ -104,10 +104,19 @@ def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) 
 import pandas as pd
 
 def order_scores(scores: pd.DataFrame) -> pd.DataFrame:
-
     scores.sort_values(by = ['score'], inplace=True, ascending=False)
-
     scores['rank'] = scores.score.rank(method = 'dense', ascending=False )
-
-
     return scores[['score', 'rank']]
+
+10.  The Number of Rich Customers
+import pandas as pd
+
+def count_rich_customers(store: pd.DataFrame) -> pd.DataFrame:
+   return store[store['amount'].gt(500) ][['customer_id']].drop_duplicates() \
+    .count().reset_index(drop=True) .to_frame()  \
+    .rename(columns={
+         0: 'rich_count' 
+       
+    }) 
+
+  
