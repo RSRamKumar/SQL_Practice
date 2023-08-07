@@ -145,3 +145,13 @@ def food_delivery(delivery: pd.DataFrame) -> pd.DataFrame:
    print(immediate, total)
    return pd.DataFrame( {'immediate_percentage': [round(immediate / total * 100, 2)]} )
   
+12. Game Play Analysis I
+import pandas as pd
+
+def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    return activity.groupby('player_id')['event_date'].apply(
+        lambda x: x.min()
+    ).to_frame().reset_index().rename(columns={
+         'event_date': 'first_login' 
+    })
+
