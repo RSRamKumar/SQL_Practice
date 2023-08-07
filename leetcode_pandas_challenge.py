@@ -173,6 +173,11 @@ def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
 return activity.groupby(
         ['player_id'],
         as_index=False
-    ).agg( {'event_date' :'min' }  ).rename(columns={'event_date': 'first_login'})
+    ).agg({'event_date' :'min' }).rename(columns={'event_date': 'first_login'})
      
-  
+
+(or)
+return activity.groupby(
+        ['player_id'],
+        as_index=False
+    ).agg(first_login = pd.NamedAgg(column="event_date", aggfunc="min")) 
