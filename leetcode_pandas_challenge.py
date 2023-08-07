@@ -57,3 +57,11 @@ def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
     employees['bonus'] = employees.apply(lambda r: r['salary'] if 
     (r['employee_id'] %2 !=0) and  (not  r['name'].startswith('M')) else 0, axis=1)  
     return employees[['employee_id', 'bonus']].sort_values(by='employee_id', ascending=True)
+
+(or)
+import pandas as pd
+
+def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
+    employees['bonus']  = np.where(
+  (~ employees['name'].str.startswith('M')) & (employees['employee_id']%2 !=0) ,  employees['salary'],0)
+    return pd.DataFrame(employees[['employee_id','bonus']]).sort_values(by=['employee_id'], ascending=True)
