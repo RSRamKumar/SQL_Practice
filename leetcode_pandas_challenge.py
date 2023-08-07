@@ -128,11 +128,20 @@ def count_rich_customers(store: pd.DataFrame) -> pd.DataFrame:
        columns = ['rich_count']
    )
   
-11.
+11. Immediate Food Delivery I
 import pandas as pd
 
 def food_delivery(delivery: pd.DataFrame) -> pd.DataFrame:
    immediate =  len(delivery[delivery.order_date == delivery.customer_pref_delivery_date ])
    total = len(delivery)
+   return pd.DataFrame( {'immediate_percentage': [round(immediate / total * 100, 2)]} )
+
+(or)
+import pandas as pd
+
+def food_delivery(delivery: pd.DataFrame) -> pd.DataFrame:
+   immediate = delivery[delivery.order_date == delivery.customer_pref_delivery_date ].size
+   total = delivery.size
+   print(immediate, total)
    return pd.DataFrame( {'immediate_percentage': [round(immediate / total * 100, 2)]} )
   
