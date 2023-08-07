@@ -49,3 +49,13 @@ import pandas as pd
 
 def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
     return patients[patients['conditions'].str.contains(' DIAB1') | patients['conditions'].str.startswith('DIAB1')]
+
+6. Calculate Special Bonus
+import pandas as pd
+
+def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
+
+    employees['bonus'] = employees.apply(lambda r: r['salary'] if 
+    (r['employee_id'] %2 !=0) and  (not  r['name'].startswith('M')) else 0, axis=1)  
+     
+    return employees[['employee_id', 'bonus']].sort_values(by='employee_id', ascending=True)
