@@ -65,3 +65,11 @@ def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
     employees['bonus']  = np.where(
   (~ employees['name'].str.startswith('M')) & (employees['employee_id']%2 !=0) ,  employees['salary'],0)
     return pd.DataFrame(employees[['employee_id','bonus']]).sort_values(by=['employee_id'], ascending=True)
+
+7. Fix Names in a Table
+import pandas as pd
+
+def fix_names(users: pd.DataFrame) -> pd.DataFrame:
+
+    users.name = users.name.apply(lambda x: x.capitalize())
+    return users.sort_values(by= 'user_id')
