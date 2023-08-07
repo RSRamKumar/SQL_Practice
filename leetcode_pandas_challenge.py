@@ -207,5 +207,11 @@ def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
 def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
     courses = courses.groupby('class', as_index=False).count()
     return courses[courses.student >= 5].drop(columns=['student'])
+
+14. Customer Placing the Largest Number of Orders
+import pandas as pd
+
+def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
+    return orders['customer_number'].mode().to_frame()
    
 
