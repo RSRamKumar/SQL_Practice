@@ -181,3 +181,6 @@ return activity.groupby(
         ['player_id'],
         as_index=False
     ).agg(first_login = pd.NamedAgg(column="event_date", aggfunc="min")) 
+
+(or)
+return activity.groupby('player_id', as_index=False)['event_date'].min().rename(columns = {'event_date': 'first_login'})
