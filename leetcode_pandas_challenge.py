@@ -169,3 +169,10 @@ def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
     activity['first_login'] = activity.groupby('player_id' )["event_date"].transform("min")
     return activity.loc[activity['event_date'] == activity['first_login'], ['player_id', 'first_login'] ]
 
+(or)
+return activity.groupby(
+        ['player_id'],
+        as_index=False
+    ).agg( {'event_date' :'min' }  ).rename(columns={'event_date': 'first_login'})
+     
+  
