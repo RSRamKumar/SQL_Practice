@@ -184,3 +184,10 @@ return activity.groupby(
 
 (or)
 return activity.groupby('player_id', as_index=False)['event_date'].min().rename(columns = {'event_date': 'first_login'})
+
+12. Number of Unique Subjects Taught by Each Teacher
+import pandas as pd
+
+def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
+    return teacher.groupby(by = 'teacher_id',  as_index=False)['subject_id'].apply(lambda x:x.nunique()).rename(columns={'subject_id': 'cnt'})
+
