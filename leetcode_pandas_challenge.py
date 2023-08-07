@@ -78,7 +78,6 @@ def fix_names(users: pd.DataFrame) -> pd.DataFrame:
 import pandas as pd
 
 def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
-
     df = employee.merge( department, left_on='departmentId', right_on='id',suffixes = ['_emp', '_dep']) \
     .groupby('name_dep'
     ).apply(
@@ -90,4 +89,13 @@ def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) 
         'name_emp': 'Employee',
         'salary': 'Salary',
     })
+    return df
+
+(or)
+import pandas as pd
+
+def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
+    df = employee.merge(department, how="left", left_on="departmentId", right_on="id")
+    df["max_sal"] = df.groupby("name_y")["salary"].transform("max")
+    df = df.loc[(df["salary"] == df["max_sal"]),["name_y","name_x","salary"]].rename(columns={"name_y":"Department", "name_x":"Employee","salary":"Salary"})
     return df
