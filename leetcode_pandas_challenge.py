@@ -99,3 +99,15 @@ def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) 
     df["max_sal"] = df.groupby("name_y")["salary"].transform("max")
     df = df.loc[(df["salary"] == df["max_sal"]),["name_y","name_x","salary"]].rename(columns={"name_y":"Department", "name_x":"Employee","salary":"Salary"})
     return df
+
+9. Rank Scores
+import pandas as pd
+
+def order_scores(scores: pd.DataFrame) -> pd.DataFrame:
+
+    scores.sort_values(by = ['score'], inplace=True, ascending=False)
+
+    scores['rank'] = scores.score.rank(method = 'dense', ascending=False )
+
+
+    return scores[['score', 'rank']]
