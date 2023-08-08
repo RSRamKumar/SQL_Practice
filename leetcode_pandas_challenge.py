@@ -213,5 +213,9 @@ import pandas as pd
 
 def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
     return orders['customer_number'].mode().to_frame()
-   
+
+15. Delete Duplicate Emails
+def delete_duplicate_emails(person: pd.DataFrame):
+    person.sort_values(by='id', inplace=True)
+    person.drop_duplicates(subset=['email'], inplace=True)
 
