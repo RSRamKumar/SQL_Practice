@@ -70,3 +70,7 @@ fact_events.assign(
     month = lambda x: x.time_id.dt.month
     ).groupby(['client_id', 'month'], as_index=False)['user_id'].nunique()
 
+(or)
+fact_events.assign(
+    month = lambda x: x.time_id.dt.month
+    ).groupby(['client_id', 'month'], as_index=False).agg({'user_id': 'nunique'}) # pd.Series.nunique
