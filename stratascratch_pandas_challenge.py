@@ -58,3 +58,11 @@ airbnb_search_details.groupby(
             'bedrooms': 'mean'
         }
         ).rename(columns={'bathrooms': 'n_bedrooms_avg', 'bedrooms': 'n_bathrooms_avg' })
+
+(or)
+airbnb_search_details.groupby(
+    ['city', 'property_type'],
+    as_index = False
+    )['bedrooms','bathrooms'].mean() .rename(columns={'bathrooms': 'n_bedrooms_avg', 'bedrooms': 'n_bathrooms_avg' })
+
+
