@@ -1,2 +1,2 @@
 # SQL_Practice
-SQL Questions solved from public sites
+SQL and Pandas Questions solved from public sites
