@@ -74,3 +74,10 @@ fact_events.assign(
 fact_events.assign(
     month = lambda x: x.time_id.dt.month
     ).groupby(['client_id', 'month'], as_index=False).agg({'user_id': 'nunique'}) # pd.Series.nunique
+
+7. Find the top 10 ranked songs in 2010
+billboard_top_100_year_end[
+    (billboard_top_100_year_end.year == 2010) & (billboard_top_100_year_end['year_rank'].between(1,10))
+    ] [
+        ['year_rank', 'group_name', 'song_name' ]
+        ].drop_duplicates()
