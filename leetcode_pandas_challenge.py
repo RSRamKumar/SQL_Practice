@@ -185,13 +185,13 @@ return activity.groupby(
 (or)
 return activity.groupby('player_id', as_index=False)['event_date'].min().rename(columns = {'event_date': 'first_login'})
 
-12. Number of Unique Subjects Taught by Each Teacher
+13. Number of Unique Subjects Taught by Each Teacher
 import pandas as pd
 
 def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
     return teacher.groupby(by = 'teacher_id',  as_index=False)['subject_id'].apply(lambda x:x.nunique()).rename(columns={'subject_id': 'cnt'})
 
-13. Classes More Than 5 Students
+14. Classes More Than 5 Students
 import pandas as pd
 
 def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
@@ -208,13 +208,13 @@ def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
     courses = courses.groupby('class', as_index=False).count()
     return courses[courses.student >= 5].drop(columns=['student'])
 
-14. Customer Placing the Largest Number of Orders
+15. Customer Placing the Largest Number of Orders
 import pandas as pd
 
 def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
     return orders['customer_number'].mode().to_frame()
 
-15. Delete Duplicate Emails
+16. Delete Duplicate Emails
 def delete_duplicate_emails(person: pd.DataFrame):
     person.sort_values(by='id', inplace=True)
     person.drop_duplicates(subset=['email'], inplace=True)
