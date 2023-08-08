@@ -65,4 +65,8 @@ airbnb_search_details.groupby(
     as_index = False
     )['bedrooms','bathrooms'].mean() .rename(columns={'bathrooms': 'n_bedrooms_avg', 'bedrooms': 'n_bathrooms_avg' })
 
+6. Unique Users Per Client Per Month
+fact_events.assign(
+    month = lambda x: x.time_id.dt.month
+    ).groupby(['client_id', 'month'], as_index=False)['user_id'].nunique()
 
