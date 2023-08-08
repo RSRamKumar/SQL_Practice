@@ -23,3 +23,11 @@ df.groupby(['product_id'], as_index= False)['total_cost'].sum().nlargest(5, 'tot
 online_orders[
     (online_orders.date.dt.year == 2022) & (online_orders.date.dt.month <=6 )
     ].assign(total_cost = lambda x: x.cost_in_dollars * x.units_sold).groupby(['product_id'], as_index= False)['total_cost'].sum().nlargest(5, 'total_cost')
+
+4. Bikes Last Used
+dc_bikeshare_q1_2012[
+    ['bike_number', 'end_time']
+    ].groupby(
+        ['bike_number'],
+        as_index=False
+        )['end_time'].max().rename(columns={'end_time': 'last_used'}).sort_values(by=['last_used'], ascending=False)
