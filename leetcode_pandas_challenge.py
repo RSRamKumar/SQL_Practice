@@ -237,4 +237,10 @@ def daily_leads_and_partners(daily_sales: pd.DataFrame) -> pd.DataFrame:
         'lead_id': 'unique_leads',
         'partner_id': 'unique_partners',
     })
+
+(or)
+return  daily_sales.groupby(by=['date_id', 'make_name'], as_index=False
+    ).agg( unique_leads = pd.NamedAgg(column="lead_id", aggfunc="nunique"),
+     unique_partners = pd.NamedAgg(column="partner_id", aggfunc="nunique"))
+
     
