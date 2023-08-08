@@ -39,3 +39,11 @@ dc_bikeshare_q1_2012[
         ['bike_number'],
         as_index=False
         )['end_time'] .agg({'end_time':'max'}).sort_values("end_time",ascending=False)
+
+(or)
+dc_bikeshare_q1_2012[
+    ['bike_number', 'end_time']
+    ].groupby(
+        ['bike_number'],
+        as_index=False
+        ).agg({'end_time':'max'}).sort_values("end_time",ascending=False)
