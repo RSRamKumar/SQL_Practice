@@ -18,3 +18,8 @@ df = online_orders[
     ]
 df ['total_cost'] = df.cost_in_dollars * df.units_sold
 df.groupby(['product_id'], as_index= False)['total_cost'].sum().nlargest(5, 'total_cost')
+
+(or)
+online_orders[
+    (online_orders.date.dt.year == 2022) & (online_orders.date.dt.month <=6 )
+    ].assign(total_cost = lambda x: x.cost_in_dollars * x.units_sold).groupby(['product_id'], as_index= False)['total_cost'].sum().nlargest(5, 'total_cost')
