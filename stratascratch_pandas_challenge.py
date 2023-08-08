@@ -47,3 +47,14 @@ dc_bikeshare_q1_2012[
         ['bike_number'],
         as_index=False
         ).agg({'end_time':'max'}).sort_values("end_time",ascending=False)
+
+5. Number Of Bathrooms And Bedrooms
+airbnb_search_details.groupby(
+    ['city', 'property_type'],
+    as_index = False
+    ).agg(
+        {
+            'bathrooms': 'mean',
+            'bedrooms': 'mean'
+        }
+        ).rename(columns={'bathrooms': 'n_bedrooms_avg', 'bedrooms': 'n_bathrooms_avg' })
