@@ -76,6 +76,12 @@ ON
     worker.worker_id = title.worker_ref_id
 )
 select worker_title from salary_rank_data where salary_rank = 1
+
+(or)
+select worker_title
+from worker
+left join title on worker_id = worker_ref_id
+where salary = (select max(salary) from worker) 
     
 6. Flags per Video
 SELECT 
