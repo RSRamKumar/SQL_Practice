@@ -243,4 +243,13 @@ return  daily_sales.groupby(by=['date_id', 'make_name'], as_index=False
     ).agg( unique_leads = pd.NamedAgg(column="lead_id", aggfunc="nunique"),
      unique_partners = pd.NamedAgg(column="partner_id", aggfunc="nunique"))
 
-    
+
+19. Group Sold Products By The Date
+def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
+    return activities.groupby(
+        'sell_date',
+        as_index = False
+    )['product'].agg([
+        ('num_sold', 'nunique'),
+        ('products', lambda x: ','.join(sorted(x.unique())))
+    ]) 
