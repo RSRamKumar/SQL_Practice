@@ -11,3 +11,10 @@ hotel_reviews[ hotel_reviews['hotel_name'] == 'Hotel Arena'][
 hotel_reviews[ hotel_reviews['hotel_name'] == 'Hotel Arena'][
     ['hotel_name', 'reviewer_score']
     ].groupby(by=['reviewer_score','hotel_name'],  as_index=False) .size().rename(columns={'size': 'n_reviews'})
+
+3. Most Lucrative Products
+df = online_orders[
+    (online_orders.date.dt.year == 2022) & (online_orders.date.dt.month <=6 )
+    ]
+df ['total_cost'] = df.cost_in_dollars * df.units_sold
+df.groupby(['product_id'], as_index= False)['total_cost'].sum().nlargest(5, 'total_cost')
