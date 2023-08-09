@@ -113,4 +113,10 @@ orders[
         customers, left_on = 'cust_id', right_on = 'id'
         ).groupby(['first_name', 'order_date'], as_index=False).agg(max_order_cost =('total_order_cost' ,'sum')
         ).nlargest(1,'max_order_cost' )
-
+(or)
+orders[
+    (orders['order_date'] > '2019-02-01') & (orders['order_date'] <= '2019-05-01')
+    ].merge(
+        customers, left_on = 'cust_id', right_on = 'id'
+        ).groupby(['first_name', 'order_date'], as_index=False)['total_order_cost'].sum().nlargest(1,'total_order_cost' )
+        
