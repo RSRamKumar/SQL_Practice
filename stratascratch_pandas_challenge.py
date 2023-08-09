@@ -99,6 +99,12 @@ merged_df = pd.merge(worker, title, left_on = 'worker_id', right_on = 'worker_re
     )   [['worker_title', 'salary_rank']]
 merged_df[merged_df['salary_rank'].eq(1)]['worker_title']
 
+(or)
+pd.merge(worker, title, left_on = 'worker_id', right_on = 'worker_ref_id'
+) .sort_values(by = ['salary'],  ascending=False).assign(
+    salary_rank = lambda x: x.salary.rank(method = 'dense', ascending = False)
+    ).nsmallest(1,  'salary_rank', keep= 'all')['worker_title']
+
 9. Highest Cost Orders
 orders[
     (orders['order_date'] > '2019-02-01') & (orders['order_date'] <= '2019-05-01')
