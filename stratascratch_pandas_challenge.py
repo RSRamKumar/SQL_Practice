@@ -86,3 +86,7 @@ billboard_top_100_year_end[
 merged_df = pd.merge(worker, title, left_on = 'worker_id', right_on = 'worker_ref_id'
 ) 
 max_salary = merged_df[merged_df["salary"] == merged_df["salary"].max()][["worker_title"]].rename(columns={"worker_title": "best_paid_title"})
+
+(or)
+worker[worker.salary == worker.salary.max()].merge( title, left_on = 'worker_id', right_on = 'worker_ref_id'
+) [['worker_title']].rename(columns={"worker_title": "best_paid_title"})
