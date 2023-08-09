@@ -81,3 +81,8 @@ billboard_top_100_year_end[
     ] [
         ['year_rank', 'group_name', 'song_name' ]
         ].drop_duplicates()
+
+8. Workers With The Highest Salaries
+merged_df = pd.merge(worker, title, left_on = 'worker_id', right_on = 'worker_ref_id'
+) 
+max_salary = merged_df[merged_df["salary"] == merged_df["salary"].max()][["worker_title"]].rename(columns={"worker_title": "best_paid_title"})
