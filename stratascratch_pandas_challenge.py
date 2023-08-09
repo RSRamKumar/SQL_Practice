@@ -90,3 +90,11 @@ max_salary = merged_df[merged_df["salary"] == merged_df["salary"].max()][["worke
 (or)
 worker[worker.salary == worker.salary.max()].merge( title, left_on = 'worker_id', right_on = 'worker_ref_id'
 ) [['worker_title']].rename(columns={"worker_title": "best_paid_title"})
+
+(or)
+
+merged_df = pd.merge(worker, title, left_on = 'worker_id', right_on = 'worker_ref_id'
+) .sort_values(by = ['salary'],  ascending=False).assign(
+    salary_rank = lambda x: x.salary.rank(method = 'dense', ascending = False)
+    )   [['worker_title', 'salary_rank']]
+merged_df[merged_df['salary_rank'].eq(1)]['worker_title']
