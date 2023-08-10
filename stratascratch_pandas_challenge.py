@@ -129,3 +129,10 @@ orders[
 10. Lyft Driver Wages
 lyft_drivers[(lyft_drivers.yearly_salary <= 30000) or (lyft_drivers.yearly_salary >= 70000)]
         
+11. Number Of Units Per Nationality
+airbnb_hosts[
+    airbnb_hosts['age'].lt(30)
+    ].merge( airbnb_units[airbnb_units['unit_type'] == 'Apartment'], 
+    on = 'host_id').groupby(['nationality'], as_index=False).agg(
+       apartment_count = ('unit_id', 'nunique') ). sort_values(by=['apartment_count'], ascending=False)
+ 
