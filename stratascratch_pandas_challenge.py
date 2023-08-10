@@ -135,4 +135,7 @@ airbnb_hosts[
     ].merge( airbnb_units[airbnb_units['unit_type'] == 'Apartment'], 
     on = 'host_id').groupby(['nationality'], as_index=False).agg(
        apartment_count = ('unit_id', 'nunique') ). sort_values(by=['apartment_count'], ascending=False)
+
+12. Top Cool Votes
+yelp_reviews[yelp_reviews.cool == yelp_reviews.cool.max()][['business_name', 'review_text']]
  
