@@ -141,3 +141,6 @@ yelp_reviews[yelp_reviews.cool == yelp_reviews.cool.max()][['business_name', 're
 
 (or)
 yelp_reviews.nlargest(1, 'cool', keep='all')[['business_name', 'review_text']]
+
+(or)
+yelp_reviews.sort_values(by = ['cool'],  ascending=False).assign(rank = lambda x: x.cool.rank(method='dense', ascending=False)).nsmallest(1, 'rank', keep='all' )[['business_name', 'review_text']]
