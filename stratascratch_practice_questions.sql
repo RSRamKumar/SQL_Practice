@@ -407,3 +407,21 @@ FROM facebook_complaints
 SELECT type, AVG(processed::int)
 FROM facebook_complaints
 GROUP BY type
+
+34. Number Of Units Per Nationality
+SELECT
+    airbnb_hosts.nationality,
+    count(distinct unit_id) as apartment_count
+FROM
+    airbnb_hosts 
+INNER JOIN
+    airbnb_units 
+ON
+    airbnb_hosts.host_id = airbnb_units.host_id
+WHERE
+    airbnb_hosts.age < 30 and airbnb_units.unit_type = 'Apartment'
+GROUP BY
+     airbnb_hosts.nationality
+ORDER BY
+    apartment_count desc
+    
