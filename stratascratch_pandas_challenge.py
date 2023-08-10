@@ -138,4 +138,6 @@ airbnb_hosts[
 
 12. Top Cool Votes
 yelp_reviews[yelp_reviews.cool == yelp_reviews.cool.max()][['business_name', 'review_text']]
- 
+
+(or)
+yelp_reviews.nlargest(1, 'cool', keep='all')[['business_name', 'review_text']]
