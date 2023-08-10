@@ -125,4 +125,7 @@ orders[
     ].merge(
         customers, left_on = 'cust_id', right_on = 'id'
         ).groupby(['first_name', 'order_date'], as_index=False)['total_order_cost'].sum().nlargest(1,'total_order_cost' , keep = 'all')
+
+10. Lyft Driver Wages
+lyft_drivers[(lyft_drivers.yearly_salary <= 30000) or (lyft_drivers.yearly_salary >= 70000)]
         
