@@ -304,3 +304,8 @@ merged_df = orders.merge(company ,on = 'com_id')
 red_sales_ids = merged_df[merged_df['name'] == 'RED']['sales_id']
 result_df = sales_person[~sales_person['sales_id'].isin(red_sales_ids)][['name']]
 return result_df
+
+24. Customers Who Never Order
+def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    return customers[~ customers.id.isin(orders.customerId)]['name'].to_frame('Customers')
+   
