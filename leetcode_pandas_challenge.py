@@ -269,3 +269,8 @@ return employees.assign(
             total_time = ('time_diff', 'sum')
         ).rename(columns={'event_day': 'day'})
 
+(or)
+return employees.assign(
+        total_time =lambda x: x.out_time - x.in_time 
+        ).groupby(['event_day', 'emp_id'], as_index=False) ['total_time'].sum().rename(columns={'event_day': 'day'})
+
