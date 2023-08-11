@@ -256,10 +256,16 @@ def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
 
 20. Find Total Time Spent by Each Employee
 def total_time(employees: pd.DataFrame) -> pd.DataFrame:
-
     return employees.assign(
         total_time =lambda x: x.out_time - x.in_time 
         ).groupby(['event_day', 'emp_id'], as_index=False) ['total_time'].apply(
             lambda x:x.sum()
             ).rename(columns={'event_day': 'day'})
-        
+
+(or)
+return employees.assign(
+        time_diff =lambda x: x.out_time - x.in_time 
+        ).groupby(['event_day', 'emp_id'], as_index=False).agg(
+            total_time = ('time_diff', 'sum')
+        ).rename(columns={'event_day': 'day'})
+
