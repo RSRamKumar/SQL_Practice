@@ -287,4 +287,7 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
     salary_dict = (employee.salary.drop_duplicates().sort_values(ascending=False).reset_index(drop=True)).to_dict()
     return pd.DataFrame({f'getNthHighestSalary({N})': 
               [ salary_dict.get(N-1) ]})
-          
+
+(or)
+   return employee.sort_values('salary', ascending=False).drop_duplicates(subset=['salary']).iloc[N - 1:N][['salary']]
+
