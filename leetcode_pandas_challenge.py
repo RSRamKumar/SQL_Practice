@@ -315,5 +315,9 @@ customers[~ customers.id.isin(orders.customerId)][['name']].rename(columns={'nam
 (or)
 customers.rename(columns = {'name':'Customers'}, inplace=True)
 return customers.loc[~customers.id.isin(orders.customerId), ['Customers']]
-   
+
+25. Actors and Directors Who Cooperated At Least Three Times
+def actors_and_directors(actor_director: pd.DataFrame) -> pd.DataFrame:
+    df = actor_director.groupby(['actor_id', 'director_id'], as_index = False).count().rename(columns={'timestamp': 'count_value'})
+    return df[df.count_value.ge(3)][['actor_id', 
                                                                    
