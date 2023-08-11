@@ -281,3 +281,10 @@ def second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:
     else:
         return pd.DataFrame({'SecondHighestSalary': 
               [employee.salary.drop_duplicates().sort_values(ascending=False).reset_index(drop=True).loc[1]]})
+
+22. Nth Highest Salary
+def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
+    salary_dict = (employee.salary.drop_duplicates().sort_values(ascending=False).reset_index(drop=True)).to_dict()
+    return pd.DataFrame({f'getNthHighestSalary({N})': 
+              [ salary_dict.get(N-1) ]})
+          
