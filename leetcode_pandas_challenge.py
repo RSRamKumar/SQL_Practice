@@ -291,3 +291,11 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
 (or)
    return employee.sort_values('salary', ascending=False).drop_duplicates(subset=['salary']).iloc[N - 1:N][['salary']]
 
+23. Sales Person
+def sales_person(sales_person: pd.DataFrame, company: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    merged_df = orders.merge(company ,on = 'com_id').merge(sales_person, on = 'sales_id',  suffixes=( '_company', '_sales')) [['name_company', 'name_sales']]
+    red_company_sales =  merged_df [merged_df.name_company == 'RED']['name_sales']
+    return pd.DataFrame ({'name': 
+            sales_person[~ sales_person['name'].isin(red_company_sales)]['name']
+    })
+     
