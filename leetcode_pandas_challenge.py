@@ -274,3 +274,10 @@ return employees.assign(
         total_time =lambda x: x.out_time - x.in_time 
         ).groupby(['event_day', 'emp_id'], as_index=False) ['total_time'].sum().rename(columns={'event_day': 'day'})
 
+21. Second Highest Salary
+def second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:
+    if employee.salary.nunique() <= 1:
+       return pd.DataFrame({'SecondHighestSalary': [None]})
+    else:
+        return pd.DataFrame({'SecondHighestSalary': 
+              [employee.salary.drop_duplicates().sort_values(ascending=False).reset_index(drop=True).loc[1]]})
