@@ -280,3 +280,7 @@ WHERE
 
 select round((immediate_delivery_count / (select count(*) from delivery))*100,2) AS immediate_percentage 
  from immediate_delivery_data
+
+(or)
+SELECT round(100 * sum(order_date = customer_pref_delivery_date) / count(*), 2) AS immediate_percentage
+  FROM Delivery
