@@ -60,6 +60,15 @@ FROM
 
 select player_id, first_login from login_rank_data where login_rank=1
 
+ (or)
+SELECT
+    player_id,
+    min(event_date) AS first_login
+FROM
+    activity
+GROUP BY
+    player_id
+ 
 8. Employees Earning More Than Their Managers
 select e1.name AS Employee
 from employee e1 
