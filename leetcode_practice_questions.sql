@@ -172,3 +172,11 @@ FROM
     tweets
 WHERE
     length(content) >  15
+
+17. Calculate Special Bonus
+SELECT
+    employee_id, if(employee_id %2 != 0 and SUBSTRING(name,1,1) !='M' , salary, 0) AS bonus
+FROM
+    employees
+ORDER BY   
+    employee_id
