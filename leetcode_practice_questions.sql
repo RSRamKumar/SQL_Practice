@@ -284,3 +284,12 @@ select round((immediate_delivery_count / (select count(*) from delivery))*100,2)
 (or)
 SELECT round(100 * sum(order_date = customer_pref_delivery_date) / count(*), 2) AS immediate_percentage
   FROM Delivery
+
+25. Find Total Time Spent by Each Employee
+SELECT
+    event_day AS day, emp_id,
+    sum(out_time - in_time) as total_time
+FROM
+    employees
+GROUP BY
+    day, emp_id
