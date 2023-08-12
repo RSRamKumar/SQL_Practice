@@ -311,7 +311,7 @@ FROM
 GROUP BY
     teacher_id
 
-27.
+27. Group Sold Products By The Date
 SELECT sell_date,
        count(DISTINCT product) AS num_sold,
        group_concat(DISTINCT product ORDER BY product ASC SEPARATOR ',') products
