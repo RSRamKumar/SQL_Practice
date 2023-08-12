@@ -188,3 +188,6 @@ FROM
     users
 ORDER BY
     user_id
+
+19. Patients With a Condition
+SELECT * FROM PATIENTS WHERE CONDITIONS LIKE '% DIAB1%' OR CONDITIONS LIKE 'DIAB1%';
