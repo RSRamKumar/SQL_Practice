@@ -266,3 +266,17 @@ FROM
     store
 WHERE
     amount > 500
+
+24. Immediate Food Delivery I
+with immediate_delivery_data as 
+(
+SELECT
+    count(*) as immediate_delivery_count
+FROM
+    Delivery 
+WHERE
+    order_date = customer_pref_delivery_date
+)
+
+select round((immediate_delivery_count / (select count(*) from delivery))*100,2) AS immediate_percentage 
+ from immediate_delivery_data
