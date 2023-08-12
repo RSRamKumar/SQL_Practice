@@ -139,3 +139,10 @@ FROM
 GROUP BY
     date_id, make_name
 
+13. Big Countries
+SELECT
+    name, population, area
+FROM
+    world
+WHERE
+    area >= 3000000 or population >= 25000000
