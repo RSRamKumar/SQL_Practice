@@ -2,7 +2,7 @@
 select class 
 from courses
 group by class
-having count(class) >= 5
+having count(*) >= 5
 
 2. Employee Bonus
 select  name,   bonus.bonus
