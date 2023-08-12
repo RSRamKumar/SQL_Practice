@@ -164,3 +164,11 @@ WHERE
     author_id = viewer_id
 ORDER BY
     author_id
+
+16. Invalid Tweets
+SELECT
+    tweet_id
+FROM
+    tweets
+WHERE
+    length(content) >  15
