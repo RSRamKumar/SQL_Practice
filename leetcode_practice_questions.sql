@@ -154,3 +154,13 @@ FROM
     products
 WHERE
     low_fats = 'Y' and recyclable = 'Y'
+
+15. Article Views I
+SELECT
+   DISTINCT author_id AS id
+FROM
+    views
+WHERE
+    author_id = viewer_id
+ORDER BY
+    author_id
