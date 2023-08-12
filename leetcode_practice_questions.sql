@@ -191,3 +191,26 @@ ORDER BY
 
 19. Patients With a Condition
 SELECT * FROM PATIENTS WHERE CONDITIONS LIKE '% DIAB1%' OR CONDITIONS LIKE 'DIAB1%';
+
+20. Department Highest Salary
+with salary_data as 
+(
+SELECT
+       Department.name AS "Department"  , Employee.name  AS "Employee", Employee.salary AS "Salary",
+      max(Employee.Salary) over(partition by Department.name) AS max_salary
+FROM
+    Department
+JOIN
+    Employee
+ON
+    Employee.departmentID = Department.id
+GROUP BY
+    Department.name, Employee.name
+)
+
+SELECT 
+     Department , Employee  , Salary
+FROM
+    salary_data
+WHERE
+    Salary = max_salary
