@@ -146,3 +146,11 @@ FROM
     world
 WHERE
     area >= 3000000 or population >= 25000000
+
+14.  Recyclable and Low Fat Products
+SELECT
+    product_id
+FROM
+    products
+WHERE
+    low_fats = 'Y' and recyclable = 'Y'
