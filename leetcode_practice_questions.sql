@@ -258,3 +258,11 @@ It would look like:
 
 Now delete this row's matching row in p1 using p1:  delete p1
 """
+
+23. The Number of Rich Customers
+SELECT
+    count(DISTINCT customer_id) AS rich_count 
+FROM
+    store
+WHERE
+    amount > 500
