@@ -331,3 +331,13 @@ return df[df.count_value.ge(3)][['actor_id', 'director_id']]
 df = actor_director.groupby(['actor_id', 'director_id'], as_index = False).size().rename(columns={'size': 'count_value'})
 return df[df.count_value.ge(3)][['actor_id', 'director_id']]
     
+26. Department Top Three Salaries
+def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
+    employee['rank'] = employee.groupby('departmentId').salary.rank(method='dense', ascending=False)
+    merged_df = employee.merge(department, left_on = 'departmentId', right_on = 'id',
+    suffixes = ('_employee', '_department'))  
+
+    return merged_df[merged_df['rank'].le(3)][['name_department', 'name_employee', 'salary']].rename(
+        columns={'name_department': 'Department',
+        'name_employee': 'Employee', 'salary':'Salary'})
+    
