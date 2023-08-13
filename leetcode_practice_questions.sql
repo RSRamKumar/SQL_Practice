@@ -329,3 +329,13 @@ FROM
     person 
 LEFT JOIN
     address USING(personid)
+
+29. Duplicate Emails
+SELECT
+  person.email
+FROM
+  person
+GROUP BY
+  person.email
+HAVING
+  count(person.email) > 1
