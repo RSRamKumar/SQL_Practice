@@ -343,3 +343,19 @@ HAVING
 (or)
 SELECT DISTINCT P1.Email FROM Person P1,Person P2 
 WHERE P1.id != P2.id AND P1.Email=P2.Email
+
+30. Department Top Three Salaries
+with salary_rank_data as 
+(
+SELECT
+    department.name AS Department, employee.name AS Employee, employee.salary AS Salary,
+    dense_rank() over(partition by department.name order by employee.salary desc) AS salary_rank
+FROM
+    employee
+JOIN
+    department
+ON
+    employee.departmentid = department.id
+)
+
+select Department, Employee, Salary from salary_rank_data where salary_rank <= 3
