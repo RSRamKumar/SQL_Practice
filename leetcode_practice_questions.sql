@@ -321,3 +321,11 @@ SELECT sell_date,
      sell_date
  ORDER BY 
      sell_date
+
+28. Combine Two Tables
+SELECT
+    person.firstName, person.lastName, address.city, address.state
+FROM
+    person 
+LEFT JOIN
+    address USING(personid)
