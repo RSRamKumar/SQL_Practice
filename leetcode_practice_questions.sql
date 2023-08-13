@@ -359,3 +359,22 @@ ON
 )
 
 select Department, Employee, Salary from salary_rank_data where salary_rank <= 3
+
+31. Trips and Users
+ SELECT
+    request_at AS 'Day',
+    round(sum(case when status != 'Completed' then 1.0 else 0 end ) / count(*) , 2) AS 'Cancellation Rate'
+FROM
+    trips
+JOIN
+    users
+ON 
+    trips.client_id = users.users_id 
+WHERE
+    Client_Id NOT IN (SELECT Users_Id FROM Users WHERE Banned = 'Yes') 
+    AND Driver_Id NOT IN (SELECT Users_Id FROM Users WHERE Banned = 'Yes')
+    AND Request_at BETWEEN '2013-10-01' AND '2013-10-03'
+GROUP BY
+    request_at
+
+ 
