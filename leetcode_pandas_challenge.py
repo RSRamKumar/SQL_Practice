@@ -344,4 +344,11 @@ def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.D
 27. Find Customer Referee
 def find_customer_referee(customer: pd.DataFrame) -> pd.DataFrame:
     return customer [customer.referee_id.ne(2) | customer.referee_id.isnull()][['name']]
+
+28. Customers Who Bought All Products
+def find_customers(customer: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
+    unique_product_count = product['product_key'].nunique()
+    df = customer.groupby(['customer_id'],as_index=False)['product_key'].agg(
+         num_unique_products= 'nunique') 
+    return df[df['num_unique_products'].eq(unique_product_count)][['customer_id']]
      
