@@ -351,4 +351,10 @@ def find_customers(customer: pd.DataFrame, product: pd.DataFrame) -> pd.DataFram
     df = customer.groupby(['customer_id'],as_index=False)['product_key'].agg(
          num_unique_products= 'nunique') 
     return df[df['num_unique_products'].eq(unique_product_count)][['customer_id']]
+
+(or)
+unique_product_count = product['product_key'].nunique()
+return  customer.groupby(['customer_id'],as_index=False).filter(
+        lambda x: x.product_key.nunique() == unique_product_count
+    )[['customer_id']].drop_duplicates()
      
