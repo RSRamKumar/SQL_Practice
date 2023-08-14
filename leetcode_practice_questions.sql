@@ -395,3 +395,12 @@ GROUP BY
     customer_id
 HAVING
     count(DISTINCT product_key) = (select count(DISTINCT product_key) from product)
+
+34. Product Sales Analysis I
+SELECT
+    product.product_name, sales.year, sales.price
+FROM
+    product
+JOIN
+    sales USING(product_id)
+
