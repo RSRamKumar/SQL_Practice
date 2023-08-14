@@ -414,3 +414,12 @@ JOIN
     employee USING(employee_id)
 GROUP BY
     project_id
+
+ (or)
+SELECT
+    DISTINCT project_id, 
+    round(avg(experience_years) over (partition by project_id),2) AS average_years 
+FROM
+    project
+ JOIN
+    employee USING(employee_id)
