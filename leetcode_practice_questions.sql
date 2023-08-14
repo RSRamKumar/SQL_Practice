@@ -404,3 +404,13 @@ FROM
 JOIN
     sales USING(product_id)
 
+35. Project Employees I
+SELECT
+    project_id, 
+    round(avg(experience_years),2) AS average_years 
+FROM
+    project
+JOIN
+    employee USING(employee_id)
+GROUP BY
+    project_id
