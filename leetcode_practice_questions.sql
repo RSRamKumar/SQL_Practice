@@ -423,3 +423,16 @@ FROM
     project
  JOIN
     employee USING(employee_id)
+
+36. Average Selling Price
+SELECT
+    unitssold.product_id, 
+    round (sum(unitssold.units * prices.price)/ sum(unitssold.units) ,2)  AS average_price 
+FROM
+    unitssold
+JOIN
+    prices
+ON
+    unitssold.product_id = prices.product_id and unitssold.purchase_date between prices.start_date and prices.end_date
+GROUP BY
+        unitssold.product_id
