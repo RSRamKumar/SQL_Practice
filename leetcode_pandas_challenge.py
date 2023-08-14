@@ -340,4 +340,8 @@ def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.D
     return merged_df[merged_df['rank'].le(3)][['name_department', 'name_employee', 'salary']].rename(
         columns={'name_department': 'Department',
         'name_employee': 'Employee', 'salary':'Salary'})
-    
+
+27. Find Customer Referee
+def find_customer_referee(customer: pd.DataFrame) -> pd.DataFrame:
+    return customer [customer.referee_id.ne(2) | customer.referee_id.isnull()][['name']]
+     
