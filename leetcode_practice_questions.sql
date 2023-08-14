@@ -385,4 +385,13 @@ FROM
     customer
 WHERE
     referee_id != 2 or referee_id is null
- 
+
+33. Customers Who Bought All Products
+SELECT
+    customer_id
+FROM
+    customer
+GROUP BY
+    customer_id
+HAVING
+    count(DISTINCT product_key) = (select count(DISTINCT product_key) from product)
