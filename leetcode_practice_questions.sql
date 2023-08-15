@@ -473,3 +473,17 @@ ON
  r.user_id = u.id 
 ORDER BY 
  travelled_distance DESC, name
+
+(or)
+SELECT
+    users.name, COALESCE(sum(rides.distance),0) AS travelled_distance 
+FROM
+    users
+LEFT JOIN
+    rides
+ON
+    users.id = rides.user_id
+GROUP BY
+    users.name, rides.user_id
+ORDER BY
+    travelled_distance desc, users.name asc
