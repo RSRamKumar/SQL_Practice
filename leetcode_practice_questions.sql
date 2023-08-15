@@ -436,3 +436,17 @@ ON
     unitssold.product_id = prices.product_id and unitssold.purchase_date between prices.start_date and prices.end_date
 GROUP BY
         unitssold.product_id
+
+37. List the Products Ordered in a Period
+SELECT
+    products.product_name, sum(orders.unit) AS unit
+FROM
+    products
+JOIN
+    orders USING(product_id)
+WHERE
+   EXTRACT(YEAR from orders.order_date) = 2020 and EXTRACT(MONTH from orders.order_date) = 2
+GROUP BY
+    products.product_name
+HAVING
+    unit >= 100
