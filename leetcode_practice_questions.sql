@@ -484,6 +484,6 @@ LEFT JOIN
 ON
     users.id = rides.user_id
 GROUP BY
-    users.name, rides.user_id
+    rides.user_id
 ORDER BY
     travelled_distance desc, users.name asc
