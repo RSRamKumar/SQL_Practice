@@ -357,4 +357,13 @@ unique_product_count = product['product_key'].nunique()
 return  customer.groupby(['customer_id'],as_index=False).filter(
         lambda x: x.product_key.nunique() == unique_product_count
     )[['customer_id']].drop_duplicates()
-     
+
+29. List the Products Ordered in a Period
+def list_products(products: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    df = products.merge(orders[(orders.order_date.dt.month == 2 ) & (orders.order_date.dt.year == 2020)],
+     on = 'product_id').groupby(['product_name'], as_index = False).agg(
+         unit = ('unit', 'sum')
+     )
+    df = df[df['unit'].ge(100)]
+    return df
+
