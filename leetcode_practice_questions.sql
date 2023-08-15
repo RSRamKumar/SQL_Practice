@@ -450,3 +450,14 @@ GROUP BY
     products.product_name
 HAVING
     unit >= 100
+
+38. Queries Quality and Percentage
+SELECT
+    query_name,
+    round(AVG(rating/position),2) AS quality,
+    round(sum(if(rating<3,1,0)) /count(query_name) * 100,2)  AS poor_query_percentage 
+FROM
+    queries
+GROUP BY
+    query_name
+
