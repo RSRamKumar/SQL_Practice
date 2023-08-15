@@ -293,13 +293,18 @@ activity_count != (select max(activity_count) from activity_data)
 select email from person 
 group by email
 having count(email) > 1
+	
 
-36. Find the Team Size
+36. Employees Earning More Than Their Manager
+SELECT a.NAME AS Employee FROM Employee AS a JOIN Employee AS b ON a.ManagerId = b.Id AND a.Salary > b.Salary
+
+	
+37. Find the Team Size
 select employee_id, count(team_id) over(partition by team_id) AS team_size
 from employee
 group by employee_id, team_id
 order by employee_id
 
 
-36. Employees Earning More Than Their Manager
-SELECT a.NAME AS Employee FROM Employee AS a JOIN Employee AS b ON a.ManagerId = b.Id AND a.Salary > b.Salary
+
+
