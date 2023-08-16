@@ -367,3 +367,12 @@ def list_products(products: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
     df = df[df['unit'].ge(100)]
     return df
 
+30. Triangle Judgement
+def triangle_judgement(triangle: pd.DataFrame) -> pd.DataFrame:
+    triangle['triangle'] = triangle.apply(lambda row: 'Yes' if (row['x']+row['y'] > row['z'])
+                                                        and
+                                                        (row['x']+row['z'] > row['y'])
+                                                        and 
+                                                        (row['y']+row['z'] > row['x'])
+                                                        else 'No', axis=1)
+    return triangle
