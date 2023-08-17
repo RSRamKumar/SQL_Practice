@@ -431,3 +431,9 @@ SELECT
 FROM oscar_nominees
 WHERE 
     nominee = 'Abigail Breslin'
+
+36. Find libraries who haven't provided the email address in circulation year 2016 but their notice preference definition is set to email
+select DISTINCT(home_library_code) from library_usage
+WHERE circulation_active_year = 2016
+AND notice_preference_definition = 'email'
+AND provided_email_address = 'FALSE'
