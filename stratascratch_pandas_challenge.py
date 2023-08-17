@@ -148,3 +148,10 @@ yelp_reviews.sort_values(by = ['cool'],  ascending=False).assign(rank = lambda x
 13. Count the number of movies that Abigail Breslin nominated for oscar
 oscar_nominees[oscar_nominees.nominee.eq('Abigail Breslin')][['movie']].nunique()
 
+
+14. Find libraries who haven't provided the email address in circulation year 2016 but their notice preference definition is set to email
+library_usage [
+    library_usage['circulation_active_year'].eq(2016) & 
+library_usage['notice_preference_definition'].eq('email') &
+library_usage['provided_email_address'].eq(0)
+    ]['home_library_code'].unique() 
