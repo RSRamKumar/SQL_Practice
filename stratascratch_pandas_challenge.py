@@ -155,3 +155,8 @@ library_usage [
 library_usage['notice_preference_definition'].eq('email') &
 library_usage['provided_email_address'].eq(0)
     ]['home_library_code'].unique() 
+
+15. Popularity of Hack
+facebook_hack_survey.merge(facebook_employees[['id', 'location']], left_on = 'employee_id',
+right_on = 'id').groupby(['location'], as_index=False).agg(
+    popularity = ('popularity', 'mean'))
