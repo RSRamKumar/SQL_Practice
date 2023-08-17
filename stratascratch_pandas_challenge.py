@@ -144,3 +144,7 @@ yelp_reviews.nlargest(1, 'cool', keep='all')[['business_name', 'review_text']]
 
 (or)
 yelp_reviews.sort_values(by = ['cool'],  ascending=False).assign(rank = lambda x: x.cool.rank(method='dense', ascending=False)).nsmallest(1, 'rank', keep='all' )[['business_name', 'review_text']]
+
+13. Count the number of movies that Abigail Breslin nominated for oscar
+oscar_nominees[oscar_nominees.nominee.eq('Abigail Breslin')][['movie']].nunique()
+
