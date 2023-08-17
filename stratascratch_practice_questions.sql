@@ -424,4 +424,10 @@ GROUP BY
      airbnb_hosts.nationality
 ORDER BY
     apartment_count desc
-    
+
+35. Count the number of movies that Abigail Breslin nominated for oscar
+SELECT
+    count(distinct movie) AS n_movies_by_abi
+FROM oscar_nominees
+WHERE 
+    nominee = 'Abigail Breslin'
