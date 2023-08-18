@@ -495,3 +495,13 @@ from triangle
 
 (or)
 SELECT *, IF(x+y>z and y+z>x and z+x>y, "Yes", "No") as triangle FROM Triangle
+
+41. Not Boring Movies
+SELECT
+    *
+FROM
+    cinema
+WHERE
+    id % 2!=0 and description not like '%boring%'
+ORDER BY
+    rating desc
