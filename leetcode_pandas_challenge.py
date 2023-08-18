@@ -376,3 +376,9 @@ def triangle_judgement(triangle: pd.DataFrame) -> pd.DataFrame:
                                                         (row['y']+row['z'] > row['x'])
                                                         else 'No', axis=1)
     return triangle
+
+
+31. Not Boring Movies
+def not_boring_movies(cinema: pd.DataFrame) -> pd.DataFrame:
+    return cinema [cinema['id'].apply(lambda x: x%2!=0) & ~ cinema['description'].str.contains('boring')].sort_values(by=['rating'], ascending=False)
+   
