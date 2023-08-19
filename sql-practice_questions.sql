@@ -68,3 +68,9 @@ where
 11. Show the total number of admissions
 SELECT count(*) as total_admissions
 FROM admissions
+
+12. Show all the columns from admissions where the patient was admitted and discharged on the same day.
+SELECT *
+from admissions
+where admission_date = discharge_date
+ 
