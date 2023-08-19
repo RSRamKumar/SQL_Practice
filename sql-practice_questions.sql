@@ -42,3 +42,9 @@ SELECT
   province_names.province_name
 FROM patients
   JOIN province_names using(province_id)
+
+8. Show how many patients have a birth_date with 2010 as the birth year.
+select count(*) AS total_patients
+from patients
+where year(birth_date) = 2010
+
