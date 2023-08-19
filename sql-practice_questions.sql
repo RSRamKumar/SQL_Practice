@@ -58,3 +58,9 @@ where height = (
     select max(height)
     from patients
   )
+
+10. Show all columns for patients who have one of the following patient_ids: 1,45,534,879,1000
+SELECT *
+FROM patients
+where
+  patient_id in (1, 45, 534, 879, 1000)
