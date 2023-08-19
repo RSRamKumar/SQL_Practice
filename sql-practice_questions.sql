@@ -34,3 +34,11 @@ WHERE allergies IS NULL
 SELECT
   CONCAT(first_name, ' ', last_name) AS full_name
 FROM patients
+
+7. Show first name, last name, and the full province name of each patient.
+SELECT
+  patients.first_name,
+  patients.last_name,
+  province_names.province_name
+FROM patients
+  JOIN province_names using(province_id)
