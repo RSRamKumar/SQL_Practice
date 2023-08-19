@@ -64,3 +64,7 @@ SELECT *
 FROM patients
 where
   patient_id in (1, 45, 534, 879, 1000)
+
+11. Show the total number of admissions
+SELECT count(*) as total_admissions
+FROM admissions
