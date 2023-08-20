@@ -99,3 +99,18 @@ SELECT
   birth_date
 FROM patients
 where height > 160 and weight > 70
+
+16. Write a query to find list of patients first_name, last_name, and allergies from Hamilton where allergies are not null
+SELECT
+  first_name,
+  last_name,
+  allergies
+FROM patients
+where allergies is not null and city = 'Hamilton'
+
+17. Based on cities where our patient lives in, write a query to display the list of unique city starting with a vowel (a, e, i, o, u). Show the result order in ascending by city.
+SELECT
+ distinct city
+FROM patients
+where substring(city,1,1) in ('A','E', 'I', 'O', 'U')
+order by city
