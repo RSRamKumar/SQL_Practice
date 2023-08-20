@@ -174,3 +174,18 @@ SELECT
   SUM(Gender = 'M') as male_count, 
   SUM(Gender = 'F') AS female_count
 FROM patients
+
+24. Show first and last name, allergies from patients which have allergies to either 'Penicillin' or 'Morphine'. Show results ordered ascending by allergies then by first_name then by last_name.
+SELECT
+  first_name,
+  last_name,
+  allergies
+FROM
+  patients
+WHERE
+  allergies = 'Penicillin'
+  OR allergies = 'Morphine'
+ORDER BY
+  allergies,  
+  first_name ,
+  last_name  
