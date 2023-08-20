@@ -234,3 +234,10 @@ FROM patients
 WHERE
   YEAR(birth_date) BETWEEN 1970 AND 1979
 ORDER BY birth_date ASC;
+
+30. We want to display each patients full name in a single column. Their last_name in all upper letters must appear first, then first_name in all lower case letters. Separate the last_name and first_name with a comma. Order the list by the first_name in decending order EX: SMITH,jane
+
+SELECT
+  concat(UPPER(last_name), ',', lower(first_name)) AS new_name_format
+from patients
+order by first_name desc
