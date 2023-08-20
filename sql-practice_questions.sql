@@ -166,3 +166,11 @@ Order the list by the length of each name and then by alphbetically
 select first_name 
 from patients
 order by len(first_name), first_name
+
+
+23. Show the total amount of male patients and the total amount of female patients in the patients table.
+Display the two results in the same row.
+SELECT 
+  SUM(Gender = 'M') as male_count, 
+  SUM(Gender = 'F') AS female_count
+FROM patients
