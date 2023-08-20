@@ -85,3 +85,17 @@ WHERE patient_id = 579
 SELECT distinct city
 FROM patients
 WHERE province_id = 'NS'
+
+(or)
+SELECT city
+FROM patients
+GROUP BY city
+HAVING province_id = 'NS'
+
+15. Write a query to find the first_name, last name and birth date of patients who has height greater than 160 and weight greater than 70
+SELECT
+  first_name,
+  last_name,
+  birth_date
+FROM patients
+where height > 160 and weight > 70
