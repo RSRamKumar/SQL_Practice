@@ -121,9 +121,7 @@ SELECT
 FROM patients
 order by birth_year
 
-19. Show unique first names from the patients table which only occurs once in the list.
-
-For example, if two or more people are named 'John' in the first_name column then don't include their name in the output list. If only 1 person is named 'Leo' then include them in the output.
+19. Show unique first names from the patients table which only occurs once in the list. For example, if two or more people are named 'John' in the first_name column then dont include their name in the output list. If only 1 person is named 'Leo' then include them in the output.
 
 SELECT first_name
 FROM patients
@@ -160,16 +158,13 @@ from patients
   join admissions using(patient_id)
 where diagnosis = 'Dementia'
 
-22. Display every patient's first_name.
-Order the list by the length of each name and then by alphbetically
-
+22. Display every patients first_name. Order the list by the length of each name and then by alphbetically
 select first_name 
 from patients
 order by len(first_name), first_name
 
 
-23. Show the total amount of male patients and the total amount of female patients in the patients table.
-Display the two results in the same row.
+23. Show the total amount of male patients and the total amount of female patients in the patients table. Display the two results in the same row.
 SELECT 
   SUM(Gender = 'M') as male_count, 
   SUM(Gender = 'F') AS female_count
@@ -198,3 +193,5 @@ FROM
   admissions
 group by patient_id, diagnosis
 having count(*)>1
+
+26. Show the city and the total number of patients in the city. Order from most to least patients and then by city name ascending.
