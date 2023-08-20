@@ -149,3 +149,13 @@ where
   first_name like 's%'
   and first_name like '%s'
   and len(first_name) >= 6;
+
+
+21. Show patient_id, first_name, last_name from patients whos diagnosis is 'Dementia'.
+select
+  patients.patient_id,
+  patients.first_name,
+  patients.last_name
+from patients
+  join admissions using(patient_id)
+where diagnosis = 'Dementia'
