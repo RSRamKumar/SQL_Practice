@@ -208,3 +208,12 @@ order by num_patients desc , city
 SELECT first_name, last_name, 'Patient' as role FROM patients
     union all
 select first_name, last_name, 'Doctor' from doctors;
+
+28. Show all allergies ordered by popularity. Remove NULL values from query.
+SELECT
+  allergies,
+  count(*) as total_diagnosis
+from patients
+where allergies is not null
+group by allergies
+order by total_diagnosis desc
