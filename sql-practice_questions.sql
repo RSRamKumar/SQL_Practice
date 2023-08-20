@@ -114,3 +114,9 @@ SELECT
 FROM patients
 where substring(city,1,1) in ('A','E', 'I', 'O', 'U')
 order by city
+
+18. Show unique birth years from patients and order them by ascending.
+SELECT
+  distinct year(birth_date) as birth_year
+FROM patients
+order by birth_year
