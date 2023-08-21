@@ -274,3 +274,11 @@ SELECT
 from admissions
 where patient_id = 542
 and admission_date = (select max(admission_date) from admissions where patient_id = 542)
+
+(or)
+SELECT *
+FROM admissions
+WHERE patient_id = 542
+GROUP BY patient_id
+HAVING
+  admission_date = MAX(admission_
