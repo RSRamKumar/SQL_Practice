@@ -241,3 +241,12 @@ SELECT
   concat(UPPER(last_name), ',', lower(first_name)) AS new_name_format
 from patients
 order by first_name desc
+
+31. Show the province_id(s), sum of height; where the total sum of its patients height is greater than or equal to 7,000.
+
+SELECT
+  province_id,
+  sum(height) as sum_height
+FROM patients
+group by province_id
+having sum_height >= 7000
