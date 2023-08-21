@@ -250,3 +250,10 @@ SELECT
 FROM patients
 group by province_id
 having sum_height >= 7000
+
+32. Show the difference between the largest weight and smallest weight for patients with the last name 'Maroni'
+
+SELECT max(weight) - min(weight)
+FROM patients
+where last_name = 'Maroni'
+group by last_name
