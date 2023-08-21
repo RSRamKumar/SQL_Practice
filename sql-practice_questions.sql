@@ -266,3 +266,11 @@ SELECT
 from admissions
 group by day_number
 order by number_of_admissions desc
+
+34. Show all columns for patient_id 542s most recent admission_date.
+
+SELECT
+   *
+from admissions
+where patient_id = 542
+and admission_date = (select max(admission_date) from admissions where patient_id = 542)
