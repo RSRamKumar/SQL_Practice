@@ -281,4 +281,13 @@ FROM admissions
 WHERE patient_id = 542
 GROUP BY patient_id
 HAVING
-  admission_date = MAX(admission_
+  admission_date = MAX(admission_date)
+
+35. Show first_name, last_name, and the total number of admissions attended for each doctor. Every admission has been attended by a doctor.
+SELECT
+  doctors.first_name,
+  doctors.last_name,
+  count(*)
+from doctors
+  join admissions on doctors.doctor_id = admissions.attending_doctor_id
+group by admissions.attending_doctor_id
