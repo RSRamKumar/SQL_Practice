@@ -335,3 +335,14 @@ select
 from patients
   join admissions using(patient_id)
   join doctors on admissions.attending_doctor_id = doctors.doctor_id
+
+39. display the number of duplicate patients based on their first_name and last_name.
+select
+  first_name,
+  last_name,
+  count(*) as num_of_duplicates
+from patients
+group by
+  first_name,
+  last_name
+having num_of_duplicates > 1
