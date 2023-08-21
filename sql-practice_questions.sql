@@ -318,3 +318,20 @@ from province_names
   join patients using(province_id)
 group by province_names.province_name
 order by patient_count desc
+
+38. For every admission, display the patient's full name, their admission diagnosis, and their doctor's full name who diagnosed their problem
+select
+  concat(
+    patients.first_name,
+    ' ',
+    patients.last_name
+  ) as patient_name,
+  admissions.diagnosis,
+  concat(
+    doctors.first_name,
+    ' ',
+    doctors.last_name
+  ) as doctor_name
+from patients
+  join admissions using(patient_id)
+  join doctors on admissions.attending_doctor_id = doctors.doctor_id
