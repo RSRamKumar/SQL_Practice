@@ -284,10 +284,26 @@ HAVING
   admission_date = MAX(admission_date)
 
 35. Show first_name, last_name, and the total number of admissions attended for each doctor. Every admission has been attended by a doctor.
-SELECT
+
+  SELECT
   doctors.first_name,
   doctors.last_name,
   count(*)
+from doctors
+  join admissions on doctors.doctor_id = admissions.attending_doctor_id
+group by admissions.attending_doctor_id
+
+36. For each doctor, display their id, full name, and the first and last admission date they attended.
+
+SELECT
+  doctors.doctor_id,
+  concat(
+    doctors.first_name,
+    ' ',
+    doctors.last_name
+  ),
+  min(admissions.admission_date) AS first_admission_date,
+  max(admissions.admission_date) AS last_admission_date
 from doctors
   join admissions on doctors.doctor_id = admissions.attending_doctor_id
 group by admissions.attending_doctor_id
