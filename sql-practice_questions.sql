@@ -346,3 +346,18 @@ group by
   first_name,
   last_name
 having num_of_duplicates > 1
+
+40. Display patient full name, height in the units feet rounded to 1 decimal, weight in the unit pounds rounded to 0 decimals, birth_date, gender non abbreviated.
+Convert CM to feet by dividing by 30.48.
+Convert KG to pounds by multiplying by 2.205.
+
+select
+  concat(first_name, ' ', last_name),
+  round(height / 30.48, 1) as height,
+  round(weight * 2.205, 0) as weight,
+  birth_date,
+  case
+    when gender = 'M' then 'MALE'
+    else 'FEMALE'
+  end as gender
+from patients
