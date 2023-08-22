@@ -166,5 +166,10 @@ facebook_hack_survey.merge(facebook_employees[['id', 'location']], left_on = 'em
 right_on = 'id').groupby(['location'], as_index=False)['popularity'].mean()
 
 16. Find the most profitable company in the financial sector of the entire world along with its continent
+
 forbes_global_2010_2014[forbes_global_2010_2014.sector == 'Financials'].sort_values(
     by = ['profits'], ascending=False).nlargest(1, columns = 'profits',keep='all')[['company', 'continent']]
+
+(or)
+forbes_global_2010_2014[forbes_global_2010_2014.sector == 'Financials'].groupby(['company', 'continent'],
+as_index = False)['profits'].agg('max').nlargest(1, 'profits', keep='all')[['company', 'continent']]
