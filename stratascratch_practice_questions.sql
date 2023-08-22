@@ -451,5 +451,16 @@ ON
     facebook_employees.id = facebook_hack_survey.employee_id
 GROUP BY
     facebook_employees.location
+
+38. Top Businesses With Most Reviews
+SELECT
+    name, review_count 
+FROM
+    yelp_business 
+ORDER BY
+    review_count desc
+LIMIT
+    5
+    
     
     
