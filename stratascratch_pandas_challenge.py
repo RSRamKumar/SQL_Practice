@@ -173,3 +173,6 @@ forbes_global_2010_2014[forbes_global_2010_2014.sector == 'Financials'].sort_val
 (or)
 forbes_global_2010_2014[forbes_global_2010_2014.sector == 'Financials'].groupby(['company', 'continent'],
 as_index = False)['profits'].agg('max').nlargest(1, 'profits', keep='all')[['company', 'continent']]
+
+17. Top Businesses With Most Reviews
+yelp_business.nlargest(5, keep='all', columns = 'review_count')[['name', 'review_count']]
