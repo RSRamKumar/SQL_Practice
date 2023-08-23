@@ -182,3 +182,6 @@ amazon_shipment['shipment_date'] = amazon_shipment['shipment_date'].dt.strftime(
 amazon_shipment.groupby(['shipment_date'], as_index = False)[
     ['shipment_id', 'sub_id']
     ].size().rename(columns={'size': 'count'})
+
+19. Find all posts which were reacted to with a heart
+facebook_posts[facebook_posts.post_id.isin(facebook_reactions[facebook_reactions.reaction.eq('heart')]['post_id'])]
