@@ -176,3 +176,9 @@ as_index = False)['profits'].agg('max').nlargest(1, 'profits', keep='all')[['com
 
 17. Top Businesses With Most Reviews
 yelp_business.nlargest(5, keep='all', columns = 'review_count')[['name', 'review_count']]
+
+18. Number of Shipments Per Month
+amazon_shipment['shipment_date'] = amazon_shipment['shipment_date'].dt.strftime('%Y-%m')
+amazon_shipment.groupby(['shipment_date'], as_index = False)[
+    ['shipment_id', 'sub_id']
+    ].size().rename(columns={'size': 'count'})
