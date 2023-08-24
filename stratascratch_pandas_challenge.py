@@ -185,3 +185,7 @@ amazon_shipment.groupby(['shipment_date'], as_index = False)[
 
 19. Find all posts which were reacted to with a heart
 facebook_posts[facebook_posts.post_id.isin(facebook_reactions[facebook_reactions.reaction.eq('heart')]['post_id'])]
+
+20. Number of Workers by Department Starting in April or Later
+worker[worker.joining_date.dt.month.ge(4)].groupby('department', as_index=False).size().rename(
+    columns = {'size': 'num_workers'}).sort_values(by=['num_workers'], ascending=False)
