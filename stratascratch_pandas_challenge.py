@@ -192,3 +192,9 @@ worker[worker.joining_date.dt.month.ge(4)].groupby('department', as_index=False)
 
 (or)
 worker[worker.joining_date.dt.month.ge(4)].groupby('department', as_index=False).agg(num_workers = ('worker_id', 'count')).sort_values(by=['num_workers'], ascending=False)
+
+21. Customer Details
+customers.merge(orders, left_on = 'id', right_on = 'cust_id', how = 'left'
+)[
+    ['first_name', 'last_name', 'city', 'order_details']
+].sort_values(by=['first_name', 'order_details'])
