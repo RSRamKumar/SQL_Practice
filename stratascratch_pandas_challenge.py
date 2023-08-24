@@ -189,3 +189,6 @@ facebook_posts[facebook_posts.post_id.isin(facebook_reactions[facebook_reactions
 20. Number of Workers by Department Starting in April or Later
 worker[worker.joining_date.dt.month.ge(4)].groupby('department', as_index=False).size().rename(
     columns = {'size': 'num_workers'}).sort_values(by=['num_workers'], ascending=False)
+
+(or)
+worker[worker.joining_date.dt.month.ge(4)].groupby('department', as_index=False).agg(num_workers = ('worker_id', 'count')).sort_values(by=['num_workers'], ascending=False)
