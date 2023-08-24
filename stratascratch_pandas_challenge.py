@@ -198,3 +198,10 @@ customers.merge(orders, left_on = 'id', right_on = 'cust_id', how = 'left'
 )[
     ['first_name', 'last_name', 'city', 'order_details']
 ].sort_values(by=['first_name', 'order_details'])
+
+22. Order Details
+customers[customers.first_name.isin(['Jill', 'Eva'])].merge(
+    orders, left_on='id', right_on = 'cust_id'
+    ).sort_values(by=['cust_id'])[
+        ['first_name', 'order_date', 'order_details', 'total_order_cost']
+        ]
