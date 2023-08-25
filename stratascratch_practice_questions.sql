@@ -461,6 +461,18 @@ ORDER BY
     review_count desc
 LIMIT
     5
-    
+
+39. Ranking Most Active Guests
+with cte as 
+( 
+SELECT
+    id_guest, SUM(n_messages) AS sum_n_messages
+FROM
+    airbnb_contacts
+GROUP BY
+    id_guest
+)
+select *, dense_rank() over (order by sum_n_messages desc) as ranking
+from cte
     
     
