@@ -205,3 +205,6 @@ customers[customers.first_name.isin(['Jill', 'Eva'])].merge(
     ).sort_values(by=['cust_id'])[
         ['first_name', 'order_date', 'order_details', 'total_order_cost']
         ]
+
+23. Ranking Most Active Guests
+airbnb_contacts.groupby(['id_guest'], as_index=False)['n_messages'].sum().sort_values(by=['n_messages'], ascending=False).assign(ranking = lambda x: x.n_messages.rank(method='dense', ascending=False))
