@@ -208,3 +208,6 @@ customers[customers.first_name.isin(['Jill', 'Eva'])].merge(
 
 23. Ranking Most Active Guests
 airbnb_contacts.groupby(['id_guest'], as_index=False)['n_messages'].sum().sort_values(by=['n_messages'], ascending=False).assign(ranking = lambda x: x.n_messages.rank(method='dense', ascending=False))
+
+24. Finding Updated Records
+ms_employee_salary.groupby(['id', 'first_name', 'last_name', 'department_id'], as_index = False)['salary'].max().sort_values(by=['id'])
