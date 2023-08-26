@@ -215,3 +215,7 @@ ms_employee_salary.groupby(['id', 'first_name', 'last_name', 'department_id'], a
 25. Churro Activity Date
 los_angeles_restaurant_health_inspections[los_angeles_restaurant_health_inspections.facility_name.eq('STREET CHURROS') & 
 los_angeles_restaurant_health_inspections.score.le(95)][['activity_date', 'pe_description']]
+
+26. Highest Salary In Department
+employee['salary_rank']= employee.groupby('department', as_index=False)['salary'].rank(method = 'dense',ascending=False)
+employee.nsmallest(1,  'salary_rank', keep='all')[['department','first_name','salary']]
