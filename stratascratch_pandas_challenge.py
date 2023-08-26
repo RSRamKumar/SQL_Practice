@@ -219,3 +219,6 @@ los_angeles_restaurant_health_inspections.score.le(95)][['activity_date', 'pe_de
 26. Highest Salary In Department
 employee['salary_rank']= employee.groupby('department', as_index=False)['salary'].rank(method = 'dense',ascending=False)
 employee.nsmallest(1,  'salary_rank', keep='all')[['department','first_name','salary']]
+
+(or)
+employee[employee.groupby('department')['salary'].transform('max') == employee['salary']][['department','first_name','salary']]
