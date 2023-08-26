@@ -222,3 +222,6 @@ employee.nsmallest(1,  'salary_rank', keep='all')[['department','first_name','sa
 
 (or)
 employee[employee.groupby('department')['salary'].transform('max') == employee['salary']][['department','first_name','salary']]
+
+27. Find the rate of processed tickets for each type
+facebook_complaints.groupby(['type'], as_index=False)['processed'].mean()
