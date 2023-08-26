@@ -225,3 +225,6 @@ employee[employee.groupby('department')['salary'].transform('max') == employee['
 
 27. Find the rate of processed tickets for each type
 facebook_complaints.groupby(['type'], as_index=False)['processed'].mean()
+
+28. City With Most Amenities
+airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
