@@ -211,3 +211,7 @@ airbnb_contacts.groupby(['id_guest'], as_index=False)['n_messages'].sum().sort_v
 
 24. Finding Updated Records
 ms_employee_salary.groupby(['id', 'first_name', 'last_name', 'department_id'], as_index = False)['salary'].max().sort_values(by=['id'])
+
+25. Churro Activity Date
+los_angeles_restaurant_health_inspections[los_angeles_restaurant_health_inspections.facility_name.eq('STREET CHURROS') & 
+los_angeles_restaurant_health_inspections.score.le(95)][['activity_date', 'pe_description']]
