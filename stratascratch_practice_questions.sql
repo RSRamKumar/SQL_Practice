@@ -478,3 +478,22 @@ from cte
 (or)
 select dense_rank() over(order by sum(n_messages) desc) as ranking, id_guest, sum(n_messages) as sum_n_messages from airbnb_contacts
 group by id_guest order by sum(n_messages) desc
+
+40. Top 5 States With 5 Star Businesses
+with cte as  
+(
+SELECT
+    state, count(business_id) AS  n_businesses,
+    rank() over (order by count(business_id) desc) as rank
+FROM
+    yelp_business
+WHERE
+    stars = 5
+GROUP BY
+    state
+ORDER BY
+    n_businesses desc, state
+)
+
+select state, n_businesses from cte where rank <= 5
+
