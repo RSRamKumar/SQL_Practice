@@ -230,5 +230,10 @@ facebook_complaints.groupby(['type'], as_index=False)['processed'].mean()
 orders [orders.order_date.dt.month.eq(3) & orders.order_date.dt.year.eq(2019)].groupby(
     ['cust_id'], as_index = False).agg(revenue = ('total_order_cost', 'sum')).sort_values(by=['revenue'], ascending=False)
 
+29. Top 5 States With 5 Star Businesses
+yelp_business[yelp_business.stars.eq(5)].groupby(['state'], as_index=False).agg(
+   n_businesses= ('business_id', 'nunique')).nlargest(5, 'n_businesses', keep= 'all').sort_values(
+       by = ['n_businesses', 'state'], ascending = [False, True])
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
