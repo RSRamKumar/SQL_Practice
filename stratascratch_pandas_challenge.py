@@ -232,7 +232,7 @@ orders [orders.order_date.dt.month.eq(3) & orders.order_date.dt.year.eq(2019)].g
 
 29. Top 5 States With 5 Star Businesses
 yelp_business[yelp_business.stars.eq(5)].groupby(['state'], as_index=False).agg(
-   n_businesses= ('business_id', 'nunique')).nlargest(5, 'n_businesses', keep= 'all').sort_values(
+   n_businesses= ('business_id', 'count')).nlargest(5, 'n_businesses', keep= 'all').sort_values(
        by = ['n_businesses', 'state'], ascending = [False, True])
 
 28. City With Most Amenities
