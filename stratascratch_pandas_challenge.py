@@ -226,5 +226,9 @@ employee[employee.groupby('department')['salary'].transform('max') == employee['
 27. Find the rate of processed tickets for each type
 facebook_complaints.groupby(['type'], as_index=False)['processed'].mean()
 
+28. Customer Revenue In March
+orders [orders.order_date.dt.month.eq(3) & orders.order_date.dt.year.eq(2019)].groupby(
+    ['cust_id'], as_index = False).agg(revenue = ('total_order_cost', 'sum')).sort_values(by=['revenue'], ascending=False)
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
