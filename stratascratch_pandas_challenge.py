@@ -235,5 +235,8 @@ yelp_business[yelp_business.stars.eq(5)].groupby(['state'], as_index=False).agg(
    n_businesses= ('business_id', 'count')).nlargest(5, 'n_businesses', keep= 'all').sort_values(
        by = ['n_businesses', 'state'], ascending = [False, True])
 
+30. Flags per Video
+user_flags[user_flags.flag_id.notnull()].assign(unique_user = lambda x: x.user_firstname.fillna('') + " "+  x.user_lastname.fillna('')) .groupby(['video_id'], as_index=False)['unique_user'].nunique()
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
