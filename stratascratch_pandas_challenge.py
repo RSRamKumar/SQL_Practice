@@ -238,5 +238,8 @@ yelp_business[yelp_business.stars.eq(5)].groupby(['state'], as_index=False).agg(
 30. Flags per Video
 user_flags[user_flags.flag_id.notnull()].assign(unique_user = lambda x: x.user_firstname.fillna('') + " "+  x.user_lastname.fillna('')) .groupby(['video_id'], as_index=False)['unique_user'].nunique()
 
+31. Find students with a median writing score
+sat_scores [sat_scores.sat_writing == sat_scores.sat_writing.median()]['student_id']
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
