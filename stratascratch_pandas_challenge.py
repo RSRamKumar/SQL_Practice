@@ -241,5 +241,12 @@ user_flags[user_flags.flag_id.notnull()].assign(unique_user = lambda x: x.user_f
 31. Find students with a median writing score
 sat_scores [sat_scores.sat_writing == sat_scores.sat_writing.median()]['student_id']
 
+32. Reviews of Categories
+yelp_business['categories'] = yelp_business.categories.str.split(';')
+yelp_business = yelp_business.explode('categories')
+
+yelp_business.groupby(['categories'], as_index=False).agg(
+    total_reviews = ('review_count', 'sum')).sort_values(by=['total_reviews'], ascending=False)
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
