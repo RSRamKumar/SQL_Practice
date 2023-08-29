@@ -248,5 +248,10 @@ yelp_business = yelp_business.explode('categories')
 yelp_business.groupby(['categories'], as_index=False).agg(
     total_reviews = ('review_count', 'sum')).sort_values(by=['total_reviews'], ascending=False)
 
+33. Top Percentile Fraud
+fraud_score["percentile"] = fraud_score.groupby('state')['fraud_score'].rank(pct=True)
+df= fraud_score[fraud_score['percentile']>.95]
+result = df[['policy_num','state','claim_cost','fraud_score']]
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
