@@ -258,6 +258,11 @@ spotify_worldwide_daily_song_ranking.groupby(['artist'], as_index=False).size().
     'size' : 'n_occurences'
 }).sort_values(by = ['n_occurences'], ascending = False)
 
+(or)
+spotify_worldwide_daily_song_ranking['artist'].value_counts().to_frame('n_occurences').reset_index()
+
 
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
+
+
