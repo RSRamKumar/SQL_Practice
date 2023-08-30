@@ -253,5 +253,11 @@ fraud_score["percentile"] = fraud_score.groupby('state')['fraud_score'].rank(pct
 df= fraud_score[fraud_score['percentile']>.95]
 result = df[['policy_num','state','claim_cost','fraud_score']]
 
+34. Find how many times each artist appeared on the Spotify ranking list
+spotify_worldwide_daily_song_ranking.groupby(['artist'], as_index=False).size().rename(columns = {
+    'size' : 'n_occurences'
+}).sort_values(by = ['n_occurences'], ascending = False)
+
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
