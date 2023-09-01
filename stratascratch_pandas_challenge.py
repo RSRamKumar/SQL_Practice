@@ -264,6 +264,9 @@ spotify_worldwide_daily_song_ranking['artist'].value_counts().to_frame('n_occure
 35. Highest Energy Consumption
 pd.concat([fb_eu_energy, fb_asia_energy, fb_na_energy]).groupby(['date'], as_index=False)['consumption'].sum().nlargest(1, 'consumption', keep='all')
 
+36. Average Salaries
+employee[['department', 'first_name','salary']].assign (avg_salary =lambda x:x.groupby(['department'], as_index=False)['salary'].transform('mean'))
+
 
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
