@@ -267,6 +267,10 @@ pd.concat([fb_eu_energy, fb_asia_energy, fb_na_energy]).groupby(['date'], as_ind
 36. Average Salaries
 employee[['department', 'first_name','salary']].assign (avg_salary =lambda x:x.groupby(['department'], as_index=False)['salary'].transform('mean'))
 
+37. Top Ranked Songs
+spotify_worldwide_daily_song_ranking [spotify_worldwide_daily_song_ranking.position.eq(1)].groupby(['trackname'], as_index=False).size().rename(
+    columns = {'size': 'times_top1'}).sort_values('times_top1', ascending=False)
+
 
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
