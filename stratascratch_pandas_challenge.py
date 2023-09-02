@@ -271,6 +271,11 @@ employee[['department', 'first_name','salary']].assign (avg_salary =lambda x:x.g
 spotify_worldwide_daily_song_ranking [spotify_worldwide_daily_song_ranking.position.eq(1)].groupby(['trackname'], as_index=False).size().rename(
     columns = {'size': 'times_top1'}).sort_values('times_top1', ascending=False)
 
+38. Count the number of user events performed by MacBookPro users
+playbook_events [playbook_events.device.eq('macbook pro')].groupby(['event_name'], as_index=False).size().rename(
+    columns = {'size': 'event_count'}).sort_values('event_count', ascending=False)
+(or)
+playbook_events.loc[playbook_events['device'] == 'macbook pro', 'event_name'].value_counts().reset_index()
 
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
