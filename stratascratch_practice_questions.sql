@@ -509,4 +509,21 @@ GROUP BY
 ORDER BY
     times_top1 desc
 
+42. User with Most Approved Flags
+with cte as (
+SELECT
+     CONCAT(user_flags.user_firstname, ' ',  user_flags.user_lastname) AS username, count(DISTINCT video_id )
+FROM
+    user_flags
+JOIN
+    flag_review
+USING(flag_id)
+WHERE 
+    flag_review.reviewed_outcome = 'APPROVED'
+GROUP BY
+    username
+)
+
+select username from cte where count = (select max(count) from cte)
+
 
