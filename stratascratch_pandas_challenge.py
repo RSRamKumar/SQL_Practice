@@ -283,6 +283,10 @@ google_gmail_emails.groupby(['from_user'], as_index = False).size().rename(colum
 }).sort_values(['total_emails', 'from_user'], ascending=[False, True]).assign(rank = lambda x: x.total_emails.rank(method = 'first',
  ascending=False))
 
+40. User with Most Approved Flags
+flag_review [flag_review.reviewed_outcome.eq('APPROVED')].merge(user_flags.assign(username = lambda 
+x: x.user_firstname + ' ' + x.user_lastname), on = 'flag_id').groupby(['username'], as_index = False).agg(
+    count = ('video_id', 'nunique')).nlargest(1,columns='count', keep ='all')['username']
 
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
