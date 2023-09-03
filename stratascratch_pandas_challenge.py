@@ -277,6 +277,13 @@ playbook_events [playbook_events.device.eq('macbook pro')].groupby(['event_name'
 (or)
 playbook_events.loc[playbook_events['device'] == 'macbook pro', 'event_name'].value_counts().reset_index()
 
+39. Activity Rank
+google_gmail_emails.groupby(['from_user'], as_index = False).size().rename(columns = {
+    'size': 'total_emails'
+}).sort_values(['total_emails', 'from_user'], ascending=[False, True]).assign(rank = lambda x: x.total_emails.rank(method = 'first',
+ ascending=False))
+
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
 
