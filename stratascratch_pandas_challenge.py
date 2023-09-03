@@ -288,6 +288,12 @@ flag_review [flag_review.reviewed_outcome.eq('APPROVED')].merge(user_flags.assig
 x: x.user_firstname + ' ' + x.user_lastname), on = 'flag_id').groupby(['username'], as_index = False).agg(
     count = ('video_id', 'nunique')).nlargest(1,columns='count', keep ='all')['username']
 
+(or)
+result = flag_review [flag_review.reviewed_outcome.eq('APPROVED')].merge(user_flags.assign(username = lambda 
+x: x.user_firstname + ' ' + x.user_lastname), on = 'flag_id').groupby(['username'], as_index = False)["video_id"].nunique().rename(
+    columns = {'video_id': 'ncount'}).assign(rank =lambda x: x.ncount.rank(method="dense", ascending=False))
+result.loc[result["rank"] == 1, 'username']
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
 
