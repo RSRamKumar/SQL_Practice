@@ -294,6 +294,10 @@ x: x.user_firstname + ' ' + x.user_lastname), on = 'flag_id').groupby(['username
     columns = {'video_id': 'ncount'}).assign(rank =lambda x: x.ncount.rank(method="dense", ascending=False))
 result.loc[result["rank"] == 1, 'username']
 
+41. Find the base pay for Police Captains
+sf_public_salaries[(sf_public_salaries['jobtitle'].str.contains('CAPTAIN', case = False))&(sf_public_salaries['jobtitle'].str.contains
+                                                                                           ('POLICE', case = False))][['employeename','basepay']]
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
 
