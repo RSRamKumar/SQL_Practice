@@ -301,6 +301,10 @@ sf_public_salaries[(sf_public_salaries['jobtitle'].str.contains('CAPTAIN', case 
 42. Highest Target Under Manager
 salesforce_employees[salesforce_employees['manager_id'] == 13][['first_name','target']].nlargest(1, keep='all', columns='target')
 
+43. Find matching hosts and guests in a way that they are both of the same gender and nationality
+airbnb_hosts.merge(airbnb_guests, on = ['gender', 'nationality']).drop_duplicates()[['host_id', 'guest_id']]
+
+
 28. City With Most Amenities
 airbnb_search_details.groupby(['city'], as_index=False).agg(amenities_count =('amenities' ,'count')).nlargest(1, 'amenities_count', keep='all')['city']
 
