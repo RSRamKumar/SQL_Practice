@@ -84,3 +84,11 @@ GROUP BY
 3. To determine the grand total, I used external reference https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-rollup/ 
 and Chatgpt to know about the rollup function.
 
+4. The expected output would be:
+
+| ProductCategory | Q1_2022 | Q2_2022     | Q3_2022         |Q4_2022  |Q1_2023
+|-----------------|-------  |-------------|-----------------|---------|
+| Electronics     | 1000    | 1500        | 2000            |...      |
+| Furuniture      | 800     | 1300        | 1800            |...      |
+| Total           | 1800    | 2800        | 3800            |...      |
+ 
