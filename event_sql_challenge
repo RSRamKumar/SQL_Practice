@@ -1,0 +1,29 @@
+This table containing sales revenue per quarter and product category. 
+```
+| SalesID | Year | SalesAmount | ProductCategory |
+|---------|------|-------------|-----------------|
+| 1       | 2022 | 1000        | Electronics     |
+| 2       | 2022 | 1500        | Electronics     |
+| 3       | 2022 | 2000        | Electronics     |
+| 4       | 2022 | 2500        | Electronics     |
+| 5       | 2023 | 1100        | Electronics     |
+| 6       | 2023 | 1600        | Electronics     |
+| 7       | 2023 | 2100        | Electronics     |
+| 8       | 2023 | 2600        | Electronics     |
+| 9       | 2024 | 1200        | Electronics     |
+| 10      | 2024 | 1700        | Electronics     |
+| 11      | 2022 | 800         | Furniture       |
+| 12      | 2022 | 1300        | Furniture       |
+| 13      | 2022 | 1800        | Furniture       |
+| 14      | 2022 | 2300        | Furniture       |
+| 15      | 2023 | 900         | Furniture       |
+| 16      | 2023 | 1400        | Furniture       |
+| 17      | 2023 | 1900        | Furniture       |
+| 18      | 2023 | 2400        | Furniture       |
+| 19      | 2024 | 1000        | Furniture       |
+| 20      | 2024 | 1500        | Furniture       |
+```
+
+# Task
+Write a SQL query that creates a pivot table showing the total sales for each quarter per year, segmented by ProductCategory. 
+Additionally, include a grand total row and a grand total column.
