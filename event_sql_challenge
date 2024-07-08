@@ -27,3 +27,12 @@ This table containing sales revenue per quarter and product category.
 # Task
 Write a SQL query that creates a pivot table showing the total sales for each quarter per year, segmented by ProductCategory. 
 Additionally, include a grand total row and a grand total column.
+
+Solution:
+
+1. I wanted to add a new column called `quarter` that indicates the quarter against the year in the dataset which are useful in the downstream process.
+
+```
+SELECT *, ROW_NUMBER() over (PARTITION BY Year, ProductCategory ORDER BY YEAR) as year_quarter
+FROM Sales
+```
