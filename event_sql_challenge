@@ -81,5 +81,6 @@ GROUP BY
     ROLLUP(ProductCategory);
 
 ```
-3. To determine the grand total, I used external reference https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-rollup/ and Chatgpt to know about the rollup function.
+3. To determine the grand total, I used external reference https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-rollup/ 
+and Chatgpt to know about the rollup function.
 
