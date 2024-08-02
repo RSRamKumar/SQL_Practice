@@ -1,3 +1,6 @@
+
+
+
 CREATE TABLE customers (
   customer_id SERIAL PRIMARY KEY,
   name VARCHAR(100)
@@ -28,7 +31,7 @@ INSERT INTO Purchases (chase_id, customer_id, product_id) VALUES
 (9, 5, 'C');
 
 
- 
+-- Query 1 
 select name from Customers where customer_id in (
 select customer_id from Purchases
 where product_id in ('A' )  
@@ -41,4 +44,19 @@ SELECT customer_id
 FROM Purchases
 WHERE product_id IN ('C')
 ) 
+order by name;
+
+-- Query 2 
+with cte as (
+select customer_id, name,
+sum(case when product_id = 'A' then 1 else 0 end) as count_of_a,
+sum(case when product_id = 'B' then 1 else 0 end) as count_of_b,
+sum(case when product_id = 'C' then 1 else 0 end) as count_of_c
+from Purchases
+join Customers 
+using(customer_id)
+group by customer_id, name
+)
+
+select name from cte where count_of_a > 0 and count_of_b > 0 and count_of_c = 0 
 order by name 
