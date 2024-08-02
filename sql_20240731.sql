@@ -1,3 +1,11 @@
+/*
+Suppose you are given two tables – Orders and  Returns. 
+The Orders table contains information about orders placed by customers, and the Returns table contains information about returned items. 
+Design a SQL query to find the top 5 ustomer with the highest percentage of returned items out of their total orders. 
+Return the customer ID  and the percentage of returned items rounded to two decimal places.
+*/
+
+
 
 DROP TABLE IF EXISTS orders;
 
