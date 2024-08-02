@@ -17,3 +17,13 @@ limit 1
 select count(viewer_id) / (select count(*) from tiktok_fct_views ) * 100.0 as abandon_view_rate
 from tiktok_fct_views
 where viewed_to_completion = 0
+
+
+
+/*
+5. How much have refunds cost us?
+*/
+select  round(sum(surcharge *  base_fare *  trip_miles),2) total_refunded
+from uber_fct_trips
+join uber_refunds
+on uber_refunds.trip_id = uber_fct_trips.ride_id
