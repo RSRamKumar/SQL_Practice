@@ -6,6 +6,8 @@ on_time_dispatch: Dispatched within 15 minutes of order received.
 late_dispatch: Dispatched between 15 and 20 minutes after order received.
 super_late_dispatch: Dispatched after 20 minutes.
 Task: Write an SQL query to count the number of dispatched orders in each category for each restaurant.
+
+Link: https://onecompiler.com/postgresql/42myrzn3q
 */
 
  
