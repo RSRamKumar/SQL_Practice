@@ -27,3 +27,10 @@ select  round(sum(surcharge *  base_fare *  trip_miles),2) total_refunded
 from uber_fct_trips
 join uber_refunds
 on uber_refunds.trip_id = uber_fct_trips.ride_id
+
+
+/*
+29. How many luxury properties?
+*/
+select count(*) total_luxury_properties from airbnb_dim_property
+where property_type LIKE '%Luxury%'
