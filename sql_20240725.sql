@@ -1,5 +1,6 @@
-
-
+/*
+Find the customers who bought both products A and B but did not buy product C
+*/
 
 CREATE TABLE customers (
   customer_id SERIAL PRIMARY KEY,
@@ -39,7 +40,7 @@ where product_id in ('A' )
 SELECT customer_id
 FROM Purchases
 WHERE product_id IN ('B')
-except 
+EXCEPT 
 SELECT customer_id
 FROM Purchases
 WHERE product_id IN ('C')
