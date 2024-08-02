@@ -34,3 +34,19 @@ on uber_refunds.trip_id = uber_fct_trips.ride_id
 */
 select count(*) total_luxury_properties from airbnb_dim_property
 where property_type LIKE '%Luxury%'
+
+
+
+
+
+/*
+61. The most expensive product per category
+*/
+with cte as (
+select *,
+dense_rank() over (partition by category order by price desc) as prank
+from amazon_products
+)
+
+select category, product_name, price from cte where prank =1 
+order by category
