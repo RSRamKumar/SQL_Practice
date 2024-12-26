@@ -1,4 +1,4 @@
-
+-- Source: Ankit Bansal Youtube Channel
 --Question Find the number of delayed_orders by each delivery Partner
 CREATE TABLE swiggy_orders (
     orderid INT PRIMARY KEY,
@@ -36,5 +36,42 @@ then 1  else 0  end ) as delayed_orders
 from swiggy_orders
 --where extract (epoch from deliver_time - order_time)/60 > predicted_time
 group by del_partner
- 
+
+
+--Question Find the lowest and highest populated city for each state
+CREATE TABLE city_population (
+    state VARCHAR(50),
+    city VARCHAR(50),
+    population INT
+);
+
+-- Insert the data
+INSERT INTO city_population (state, city, population) VALUES ('haryana', 'ambala', 100);
+INSERT INTO city_population (state, city, population) VALUES ('haryana', 'panipat', 200);
+INSERT INTO city_population (state, city, population) VALUES ('haryana', 'gurgaon', 300);
+INSERT INTO city_population (state, city, population) VALUES ('punjab', 'amritsar', 150);
+INSERT INTO city_population (state, city, population) VALUES ('punjab', 'ludhiana', 400);
+INSERT INTO city_population (state, city, population) VALUES ('punjab', 'jalandhar', 250);
+INSERT INTO city_population (state, city, population) VALUES ('maharashtra', 'mumbai', 1000);
+INSERT INTO city_population (state, city, population) VALUES ('maharashtra', 'pune', 600);
+INSERT INTO city_population (state, city, population) VALUES ('maharashtra', 'nagpur', 300);
+INSERT INTO city_population (state, city, population) VALUES ('karnataka', 'bangalore', 900);
+INSERT INTO city_population (state, city, population) VALUES ('karnataka', 'mysore', 400);
+INSERT INTO city_population (state, city, population) VALUES ('karnataka', 'mangalore', 200);
+
+
+with cte as (
+select *, 
+rank() over(partition by state order by population desc) as desc_rank,
+rank() over(partition by state order by population ) as asc_rank 
+from city_population
+)
+
+
+
+select state, 
+max(case when desc_rank = 1 then city end) as highest_populated_city,
+max(case when asc_rank = 1 then city end) as lowest_populated_city
+from cte 
+group by state 
  
